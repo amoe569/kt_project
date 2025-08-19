@@ -1,0 +1,112 @@
+Project cctv_ai_demo {
+  database_type: "PostgreSQL"
+  Note: 'CCTV AI 관제 데모: 카메라, 이벤트, 저장영상(녹화), 상태 로그'
+}
+
+Enum camera_status {
+  NORMAL
+  ALERT
+  FAULT
+}
+
+Enum event_type {
+  person
+  vehicle
+  intrusion
+  loitering
+  fire
+  other
+}
+
+Table cameras {
+  id          varchar [pk, note: '예: cam-001']
+  name        varchar
+  lat         double
+  lng         double
+  status      camera_status [default: 'NORMAL', note: '아이콘 색/상태용']
+  stream_url  varchar [null, note: '라이브 스트림 소스 URL(선택)']
+  description text    [null]
+
+  created_at  timestamptz [default: `now()`]
+  updated_at  timestamptz [default: `now()`]
+
+  Note: 'GIS 맵용 좌표/상태 포함'
+
+  Indexes {
+    (lat, lng)
+    (status)
+  }
+}
+
+Table videos {
+  id               uuid [pk, default: `gen_random_uuid()`]
+  camera_id        varchar [not null, ref: > cameras.id]
+  start_ts         timestamptz
+  end_ts           timestamptz
+  duration_sec     int
+  path             text   [note: '예: /recordings/cam-001/2025/08/18/1000-1030.mp4']
+  file_size_bytes  bigint
+  checksum         varchar [null]
+  codec            varchar [null]
+  created_at       timestamptz [default: `now()`]
+
+  Note: '30분 단위 등 분할 저장된 녹화 파일 메타'
+
+  Indexes {
+    (camera_id, start_ts)
+    (start_ts)
+  }
+}
+
+Table events {
+  id           uuid   [pk, default: `gen_random_uuid()`]
+  camera_id    varchar [not null, ref: > cameras.id]
+  video_id     uuid   [null, ref: - videos.id, note: '해당 이벤트가 포함된 분할 영상(선택)']
+  ts           timestamptz
+  type         event_type
+  severity     int    [note: '0=info,1=warn,2=alert']
+  score        numeric(4,3) [note: '신뢰도 0~1']
+  bbox_x       int
+  bbox_y       int
+  bbox_w       int
+  bbox_h       int
+  frame_index  int    [null]
+  thumb_path   text   [null, note: '이벤트 프레임 썸네일 경로(선택)']
+  meta_json    jsonb  [null, note: '추가 속성(추적 ID 등)']
+  created_at   timestamptz [default: `now()`]
+
+  Note: 'SSE 알림·로그 조회에 사용'
+
+  Indexes {
+    (camera_id, ts)
+    (type, ts)
+    (video_id, ts)
+  }
+}
+
+Table camera_status_logs {
+  id          uuid [pk, default: `gen_random_uuid()`]
+  camera_id   varchar [not null, ref: > cameras.id]
+  prev_status camera_status
+  new_status  camera_status
+  reason      text   [null]
+  ts          timestamptz
+  created_at  timestamptz [default: `now()`]
+
+  Note: '카메라 상태 변경 이력(정상/경보/비정상)'
+
+  Indexes {
+    (camera_id, ts)
+  }
+}
+
+/* 관계 요약
+ * cameras 1---N videos
+ * cameras 1---N events
+ * videos  1---N events(선택 연결)
+ * cameras 1---N camera_status_logs
+ */
+Ref: videos.camera_id > cameras.id
+Ref: events.camera_id > cameras.id
+Ref: events.video_id  - videos.id
+Ref: camera_status_logs.camera_id > cameras.id

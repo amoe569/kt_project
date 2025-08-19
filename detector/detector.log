@@ -1,0 +1,1621 @@
+/Users/jingyuyoo/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+🚀 CCTV AI Detector RTSP Demo 시작 중...
+📹 RTSP 스트림: 4개 카메라
+🌐 API 서버: http://localhost:8080
+🎯 탐지 임계값: 0.5
+🎥 cam-001: RTSP 스트림 연결 시작 - rtsp://210.99.70.120:1935/live/cctv001.stream
+🔄 cam-001 스트림 처리 스레드 시작
+🎥 cam-002: RTSP 스트림 연결 시작 - rtsp://210.99.70.120:1935/live/cctv002.stream
+🔄 cam-002 스트림 처리 스레드 시작
+🎥 cam-003: RTSP 스트림 연결 시작 - rtsp://210.99.70.120:1935/live/cctv003.stream
+🔄 cam-003 스트림 처리 스레드 시작
+🎥 cam-004: RTSP 스트림 연결 시작 - rtsp://210.99.70.120:1935/live/cctv004.stream
+🔄 cam-004 스트림 처리 스레드 시작
+✅ 모든 RTSP 스트림 처리 스레드가 시작되었습니다.
+🌐 웹 인터페이스: http://localhost:5001
+📡 MJPEG 스트림: http://localhost:5001/stream/<camera_id>
+🧪 API 테스트: http://localhost:5001/test
+📊 상태 정보: http://localhost:5001/status
+
+💡 Spring Boot를 실행한 후 이 페이지에서 실시간 RTSP 스트림을 확인하세요!
+ * Serving Flask app 'simple_app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.30.1.95:5001
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [19/Aug/2025 16:14:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:14:41] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:14:41] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:14:41] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:14:41] "GET /stream/cam-004 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:14:56] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:15:12] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:15:30] "HEAD /stream/cam-001 HTTP/1.1" 200 -
+✅ cam-001: RTSP 스트림 연결 성공
+✅ cam-002: RTSP 스트림 연결 성공
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+✅ cam-004: RTSP 스트림 연결 성공
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+✅ cam-003: RTSP 스트림 연결 성공
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f1c460>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f21040>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f21c70>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f1c5b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f21d60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f2d340>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f2dca0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f37670>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f2d550>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f21f40>: Failed to establish a new connection: [Errno 61] Connection refused'))
+127.0.0.1 - - [19/Aug/2025 16:19:38] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:19:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:19:43] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:19:43] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:19:43] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:19:43] "GET /stream/cam-004 HTTP/1.1" 200 -
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f21910>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f1c4c0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f1ca60>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f1c700>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f1cc70>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113f21670>: Failed to establish a new connection: [Errno 61] Connection refused'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x113d303a0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+127.0.0.1 - - [19/Aug/2025 16:19:48] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:19:52] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:20:11] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:20:15] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:20:25] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:21:06] "HEAD /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:21:16] "GET /stream/cam-001 HTTP/1.1" 200 -
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+[ WARN:0@1001.915] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 424944.573880 ms
+[ WARN:1@1001.915] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 424930.509379 ms
+[ WARN:2@1001.920] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 424992.307428 ms
+[ WARN:3@1001.923] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 424990.355485 ms
+[ WARN:2@1467.021] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 465075.008278 ms
+[ WARN:3@1467.028] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 465075.627926 ms
+[ WARN:2@1497.246] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30010.702506 ms
+[ WARN:3@1497.284] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30016.095345 ms
+127.0.0.1 - - [19/Aug/2025 16:39:56] "GET /stream/cam-001 HTTP/1.1" 200 -
+[ WARN:2@1528.242] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30000.459731 ms
+[ WARN:3@1528.372] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30094.386208 ms
+[ WARN:2@1559.336] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30090.357733 ms
+[ WARN:3@1559.463] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30088.231632 ms
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+⚠️ cam-001: 프레임 읽기 실패 (1회 연속)
+⚠️ cam-002: 프레임 읽기 실패 (1회 연속)
+⚠️ cam-001: 프레임 읽기 실패 (2회 연속)
+⚠️ cam-002: 프레임 읽기 실패 (2회 연속)
+⚠️ cam-001: 프레임 읽기 실패 (3회 연속)
+⚠️ cam-002: 프레임 읽기 실패 (3회 연속)
+⚠️ cam-002: 프레임 읽기 실패 (4회 연속)
+⚠️ cam-001: 프레임 읽기 실패 (4회 연속)
+⚠️ cam-001: 프레임 읽기 실패 (5회 연속)
+🔄 cam-001: 연속 실패로 인한 재연결 시도
+🔄 cam-001: 5초 후 재연결 시도 (0/10)
+⚠️ cam-002: 프레임 읽기 실패 (5회 연속)
+🔄 cam-002: 연속 실패로 인한 재연결 시도
+🔄 cam-002: 5초 후 재연결 시도 (0/10)
+✅ cam-001: RTSP 스트림 연결 성공
+✅ cam-002: RTSP 스트림 연결 성공
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+⚠️ cam-003: 프레임 읽기 실패 (1회 연속)
+⚠️ cam-004: 프레임 읽기 실패 (1회 연속)
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+⚠️ cam-003: 프레임 읽기 실패 (2회 연속)
+⚠️ cam-004: 프레임 읽기 실패 (2회 연속)
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+⚠️ cam-003: 프레임 읽기 실패 (3회 연속)
+⚠️ cam-004: 프레임 읽기 실패 (3회 연속)
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+[ WARN:2@1590.432] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30090.314653 ms
+[ WARN:3@1590.549] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30084.010823 ms
+[ WARN:2@1621.516] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30083.074354 ms
+[ WARN:3@1621.633] global cap_ffmpeg_impl.hpp:453 _opencv_ffmpeg_interrupt_callback Stream timeout triggered after 30081.642265 ms
+127.0.0.1 - - [19/Aug/2025 16:42:09] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:42:15] "GET /stream/cam-003 HTTP/1.1" 200 -
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+⚠️ cam-003: 프레임 읽기 실패 (4회 연속)
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+⚠️ cam-004: 프레임 읽기 실패 (4회 연속)
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+⚠️ cam-003: 프레임 읽기 실패 (5회 연속)
+🔄 cam-003: 연속 실패로 인한 재연결 시도
+🔄 cam-003: 5초 후 재연결 시도 (0/10)
+⚠️ cam-004: 프레임 읽기 실패 (5회 연속)
+🔄 cam-004: 연속 실패로 인한 재연결 시도
+🔄 cam-004: 5초 후 재연결 시도 (0/10)
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+✅ cam-003: RTSP 스트림 연결 성공
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-004: RTSP 스트림 연결 성공
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+127.0.0.1 - - [19/Aug/2025 16:43:38] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:43:47] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:02] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:02] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:02] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:02] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:02] "GET /stream/cam-004 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:10] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:10] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:44:48] "GET /stream/cam-001 HTTP/1.1" 200 -
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - person_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - vehicle_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-003: 비디오 메타데이터 전송 실패 - HTTP 400
+✅ cam-002: 이벤트 전송 성공 - object_detected
+❌ cam-001: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-004: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 비디오 메타데이터 전송 실패 - HTTP 400
+❌ cam-002: 이벤트 전송 실패 - HTTP 500
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+127.0.0.1 - - [19/Aug/2025 16:49:07] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:49:07] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:49:07] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:49:07] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:49:07] "GET /stream/cam-004 HTTP/1.1" 200 -
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f569a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c610>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c160>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047d60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30a30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48b20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48460>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2dee0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f560d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f1c400>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f218e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130471c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047a30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c6a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48880>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48400>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f21310>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d1f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f560a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56340>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48ac0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2dc10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48610>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130479a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c220>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f212b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c040>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130471f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48fd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f1c7f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48790>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f44820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053cd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047040>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cac0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56850>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f506d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48af0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f482e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56d90>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48b50>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c190>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cee0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50730>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130535b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d790>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f1c5b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c8b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48ee0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f483a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f561c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053430>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047760>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047970>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c0d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f508e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f565e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56b80>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047c40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047430>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48bb0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f481f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130535e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047d00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c460>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56880>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37040>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053f70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48f70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48a00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d2b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f506a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130477c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48580>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48520>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56580>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130537c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305ce80>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c8e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56f40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56eb0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053430>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2df10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48df0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c8b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cc70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56a00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047d30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047310>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113013a60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48bb0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f489a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305ccd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c6d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56d30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48d60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047760>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130470a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56dc0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2dd00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054550>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047c40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047910>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48610>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f506a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56730>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054520>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48af0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d4f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+127.0.0.1 - - [19/Aug/2025 16:56:36] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:56:36] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:56:37] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 16:56:37] "GET /stream/cam-004 HTTP/1.1" 200 -
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047340>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56a60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f1c220>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50340>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48d00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48c10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054fd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48850>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f500a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047040>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130471f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56550>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56d30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48910>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48b80>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054e20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cf40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56cd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48910>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130476a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130472b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50550>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f377f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130542b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054280>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047280>, 'Connection to localhost timed out. (connect timeout=5)'))
+127.0.0.1 - - [19/Aug/2025 16:57:35] "GET / HTTP/1.1" 200 -
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48940>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48c40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56f40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37580>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50430>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054760>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56d00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c250>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56550>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2dac0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130546a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48f70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48190>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047df0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d4c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054eb0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30a30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f564c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c7c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cc70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37190>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56fa0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054e50>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054220>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48730>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d670>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30ca0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f566a0>, 'Connection to localhost timed out. (connect timeout=5)'))
+127.0.0.1 - - [19/Aug/2025 17:00:04] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:04] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:04] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:04] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:04] "GET /stream/cam-004 HTTP/1.1" 200 -
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c8b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cf40>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2dd60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f565b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d308b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f488e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48fd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054250>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48490>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37490>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30f10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c040>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56f70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053c70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c220>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d190>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054e50>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113013850>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48a60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48910>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50790>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054790>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56c10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2dca0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c040>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c7c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+127.0.0.1 - - [19/Aug/2025 17:00:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:20] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:20] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:20] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:20] "GET /stream/cam-004 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:31] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:31] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:31] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:31] "GET /stream/cam-004 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:53] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:53] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:53] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:53] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:00:53] "GET /stream/cam-004 HTTP/1.1" 200 -
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053280>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f509d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48a30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047ee0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c610>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50460>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053430>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f2d2b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f565b0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f44340>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50f70>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c7f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f21b80>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37160>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48d60>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047d30>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047ac0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50ac0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130535e0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f1cac0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130470d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37070>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054a00>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c130>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56d90>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053dc0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053fd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+127.0.0.1 - - [19/Aug/2025 17:01:50] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:01:50] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:01:50] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:01:51] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:01:51] "GET /stream/cam-004 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:02] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:02] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:02] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:02] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:02] "GET /stream/cam-004 HTTP/1.1" 200 -
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30580>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047100>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50340>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48100>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130476d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130479d0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56370>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054880>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c790>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f37670>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56100>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047b80>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113047c10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054c10>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f507c0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56fd0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c160>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113d30b20>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054820>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 이벤트 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/events (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f48880>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305cdf0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x11305c970>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113053760>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-004: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f56580>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-001: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x1130474f0>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-003: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113f50970>, 'Connection to localhost timed out. (connect timeout=5)'))
+❌ cam-002: 비디오 메타데이터 전송 오류: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/videos (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x113054a30>, 'Connection to localhost timed out. (connect timeout=5)'))
+127.0.0.1 - - [19/Aug/2025 17:03:04] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:04] "GET /stream/cam-003 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:04] "GET /stream/cam-001 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:04] "GET /stream/cam-002 HTTP/1.1" 200 -
+127.0.0.1 - - [19/Aug/2025 17:03:04] "GET /stream/cam-004 HTTP/1.1" 200 -

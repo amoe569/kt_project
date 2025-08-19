@@ -1,0 +1,2051 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 3400,
+    "height": 2200,
+    "scrollTop": -100,
+    "scrollLeft": -880,
+    "zoomLevel": 0.9,
+    "show": 508,
+    "database": 16,
+    "databaseName": "PostgreSQL",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 1,
+    "columnNameCase": 1,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": true,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "tbl_users",
+      "tbl_cameras",
+      "tbl_videos",
+      "tbl_events"
+    ],
+    "relationshipIds": [
+      "DWYeMHY2RtFsZvx-Byh-W",
+      "xZeL2EtSc7Aftp_g6i5AW",
+      "8z6imtM2AcppY2LCjBKPS",
+      "qOied5Ih3keLRKo0r7MF-"
+    ],
+    "indexIds": [
+      "idx_users_email_unique",
+      "idx_videos_cam_start",
+      "idx_events_cam_ts",
+      "idx_events_type_ts"
+    ],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "tbl_users": {
+        "id": "tbl_users",
+        "name": "users",
+        "comment": "관제 사용자",
+        "columnIds": [
+          "col_users_id",
+          "col_users_email",
+          "col_users_name",
+          "col_users_password_hash",
+          "col_users_role",
+          "col_users_status",
+          "col_users_created_at",
+          "col_users_updated_at"
+        ],
+        "seqColumnIds": [
+          "col_users_id",
+          "col_users_email",
+          "col_users_name",
+          "col_users_password_hash",
+          "col_users_role",
+          "col_users_status",
+          "col_users_created_at",
+          "col_users_updated_at",
+          "rZLbvZGtgA069aZdLmf9C"
+        ],
+        "ui": {
+          "x": 823.3332,
+          "y": 497.7779,
+          "zIndex": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1755521109329,
+          "createAt": 1755520552067
+        }
+      },
+      "tbl_user_cameras": {
+        "id": "tbl_user_cameras",
+        "name": "user_cameras",
+        "comment": "사용자–카메라 소유 매핑",
+        "columnIds": [
+          "col_usercams_id",
+          "col_usercams_user_id",
+          "col_usercams_camera_id",
+          "col_usercams_owned_at"
+        ],
+        "seqColumnIds": [
+          "col_usercams_id",
+          "col_usercams_user_id",
+          "col_usercams_camera_id",
+          "col_usercams_owned_at"
+        ],
+        "ui": {
+          "x": 227.7778,
+          "y": 454.4444,
+          "zIndex": 1,
+          "widthName": 81,
+          "widthComment": 120,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1755520700587,
+          "createAt": 1755520552067
+        }
+      },
+      "tbl_cameras": {
+        "id": "tbl_cameras",
+        "name": "cameras",
+        "comment": "CCTV 메타(좌표/상태/스트림)",
+        "columnIds": [
+          "col_cameras_id",
+          "col_cameras_name",
+          "col_cameras_lat",
+          "col_cameras_lng",
+          "col_cameras_status",
+          "col_cameras_stream_url",
+          "col_cameras_description",
+          "col_cameras_created_at",
+          "RRHzCd1VKZx0It4yiLCFz"
+        ],
+        "seqColumnIds": [
+          "col_cameras_id",
+          "OauBhvoj03EqrSVxgWEpV",
+          "qPJGudQq_D5mWsh2lrY6G",
+          "col_cameras_name",
+          "col_cameras_lat",
+          "col_cameras_lng",
+          "col_cameras_status",
+          "col_cameras_stream_url",
+          "col_cameras_description",
+          "col_cameras_created_at",
+          "col_cameras_updated_at",
+          "9scVyZXLh0L34uUIjRJRg",
+          "vJ_Q-oDoh9twPaVmJ9sPs",
+          "RRHzCd1VKZx0It4yiLCFz"
+        ],
+        "ui": {
+          "x": 824.4443,
+          "y": 50.0001,
+          "zIndex": 1,
+          "widthName": 60,
+          "widthComment": 148,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1755521099795,
+          "createAt": 1755520552067
+        }
+      },
+      "tbl_videos": {
+        "id": "tbl_videos",
+        "name": "videos",
+        "comment": "분할 저장된 녹화 파일 메타",
+        "columnIds": [
+          "col_videos_id",
+          "4FBiyBsfB5TKH8mxgGILs",
+          "col_videos_start_ts",
+          "col_videos_end_ts",
+          "col_videos_duration_sec",
+          "col_videos_path",
+          "col_videos_created_at"
+        ],
+        "seqColumnIds": [
+          "col_videos_id",
+          "4FBiyBsfB5TKH8mxgGILs",
+          "4V63XuPGLE1ZL913qHWiJ",
+          "col_videos_camera_id",
+          "col_videos_start_ts",
+          "col_videos_end_ts",
+          "col_videos_duration_sec",
+          "col_videos_path",
+          "col_videos_file_size_bytes",
+          "col_videos_checksum",
+          "col_videos_codec",
+          "col_videos_created_at"
+        ],
+        "ui": {
+          "x": 1348.8889,
+          "y": 46.6667,
+          "zIndex": 1,
+          "widthName": 60,
+          "widthComment": 130,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1755521075991,
+          "createAt": 1755520552067
+        }
+      },
+      "tbl_events": {
+        "id": "tbl_events",
+        "name": "events",
+        "comment": "탐지 이벤트(SSE/로그 조회)",
+        "columnIds": [
+          "col_events_id",
+          "et4CcwHFXsUNeZ0ETxIfM",
+          "K5Igjq3sOybNNXCMvsEmK",
+          "col_events_ts",
+          "col_events_type",
+          "col_events_bbox_x",
+          "col_events_bbox_y",
+          "col_events_bbox_w",
+          "col_events_bbox_h",
+          "col_events_created_at"
+        ],
+        "seqColumnIds": [
+          "col_events_id",
+          "et4CcwHFXsUNeZ0ETxIfM",
+          "col_events_camera_id",
+          "col_events_video_id",
+          "K5Igjq3sOybNNXCMvsEmK",
+          "col_events_ts",
+          "col_events_type",
+          "col_events_severity",
+          "col_events_score",
+          "col_events_bbox_x",
+          "col_events_bbox_y",
+          "col_events_bbox_w",
+          "col_events_bbox_h",
+          "col_events_frame_index",
+          "col_events_thumb_path",
+          "col_events_meta_json",
+          "col_events_created_at"
+        ],
+        "ui": {
+          "x": 1326.6668,
+          "y": 456.6667,
+          "zIndex": 1,
+          "widthName": 60,
+          "widthComment": 137,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1755521114930,
+          "createAt": 1755520552067
+        }
+      },
+      "tbl_status_logs": {
+        "id": "tbl_status_logs",
+        "name": "camera_status_logs",
+        "comment": "카메라 상태 변경 이력",
+        "columnIds": [
+          "col_logs_id",
+          "col_logs_camera_id",
+          "col_logs_prev_status",
+          "col_logs_new_status",
+          "col_logs_reason",
+          "col_logs_ts",
+          "col_logs_created_at"
+        ],
+        "seqColumnIds": [
+          "col_logs_id",
+          "col_logs_camera_id",
+          "col_logs_prev_status",
+          "col_logs_new_status",
+          "col_logs_reason",
+          "col_logs_ts",
+          "col_logs_created_at"
+        ],
+        "ui": {
+          "x": 820,
+          "y": 460,
+          "zIndex": 1,
+          "widthName": 116,
+          "widthComment": 106,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "col_users_id": {
+        "id": "col_users_id",
+        "tableId": "tbl_users",
+        "name": "user_id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520813409,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_email": {
+        "id": "col_users_email",
+        "tableId": "tbl_users",
+        "name": "email",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_name": {
+        "id": "col_users_name",
+        "tableId": "tbl_users",
+        "name": "name",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_password_hash": {
+        "id": "col_users_password_hash",
+        "tableId": "tbl_users",
+        "name": "password_hash",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 90,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_role": {
+        "id": "col_users_role",
+        "tableId": "tbl_users",
+        "name": "role",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "'USER'",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_status": {
+        "id": "col_users_status",
+        "tableId": "tbl_users",
+        "name": "status",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "'ACTIVE'",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_created_at": {
+        "id": "col_users_created_at",
+        "tableId": "tbl_users",
+        "name": "created_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 63,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_users_updated_at": {
+        "id": "col_users_updated_at",
+        "tableId": "tbl_users",
+        "name": "updated_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_usercams_id": {
+        "id": "col_usercams_id",
+        "tableId": "tbl_user_cameras",
+        "name": "id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_usercams_user_id": {
+        "id": "col_usercams_user_id",
+        "tableId": "tbl_user_cameras",
+        "name": "user_id",
+        "comment": "FK -> users.id",
+        "dataType": "uuid",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 82,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_usercams_camera_id": {
+        "id": "col_usercams_camera_id",
+        "tableId": "tbl_user_cameras",
+        "name": "camera_id",
+        "comment": "FK -> cameras.id",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 61,
+          "widthComment": 99,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_usercams_owned_at": {
+        "id": "col_usercams_owned_at",
+        "tableId": "tbl_user_cameras",
+        "name": "owned_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_id": {
+        "id": "col_cameras_id",
+        "tableId": "tbl_cameras",
+        "name": "camera_id",
+        "comment": "예: cam-001",
+        "dataType": "varchar",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 61,
+          "widthComment": 69,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520847325,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_name": {
+        "id": "col_cameras_name",
+        "tableId": "tbl_cameras",
+        "name": "name",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_lat": {
+        "id": "col_cameras_lat",
+        "tableId": "tbl_cameras",
+        "name": "lat",
+        "comment": "",
+        "dataType": "double precision",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 96,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_lng": {
+        "id": "col_cameras_lng",
+        "tableId": "tbl_cameras",
+        "name": "lng",
+        "comment": "",
+        "dataType": "double precision",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 96,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_status": {
+        "id": "col_cameras_status",
+        "tableId": "tbl_cameras",
+        "name": "status",
+        "comment": "NORMAL/ALERT/FAULT",
+        "dataType": "varchar",
+        "default": "'NORMAL'",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 133,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_stream_url": {
+        "id": "col_cameras_stream_url",
+        "tableId": "tbl_cameras",
+        "name": "stream_url",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 62,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_description": {
+        "id": "col_cameras_description",
+        "tableId": "tbl_cameras",
+        "name": "description",
+        "comment": "",
+        "dataType": "text",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 65,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_created_at": {
+        "id": "col_cameras_created_at",
+        "tableId": "tbl_cameras",
+        "name": "created_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 63,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_cameras_updated_at": {
+        "id": "col_cameras_updated_at",
+        "tableId": "tbl_cameras",
+        "name": "updated_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 67,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_id": {
+        "id": "col_videos_id",
+        "tableId": "tbl_videos",
+        "name": "video_id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520960819,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_camera_id": {
+        "id": "col_videos_camera_id",
+        "tableId": "tbl_videos",
+        "name": "camera_id",
+        "comment": "FK -> cameras.id",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 61,
+          "widthComment": 99,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_start_ts": {
+        "id": "col_videos_start_ts",
+        "tableId": "tbl_videos",
+        "name": "start_ts",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_end_ts": {
+        "id": "col_videos_end_ts",
+        "tableId": "tbl_videos",
+        "name": "end_ts",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_duration_sec": {
+        "id": "col_videos_duration_sec",
+        "tableId": "tbl_videos",
+        "name": "duration_sec",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 76,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_path": {
+        "id": "col_videos_path",
+        "tableId": "tbl_videos",
+        "name": "path",
+        "comment": "예: /recordings/cam-001/2025/08/18/1000-1030.mp4",
+        "dataType": "text",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 300,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_file_size_bytes": {
+        "id": "col_videos_file_size_bytes",
+        "tableId": "tbl_videos",
+        "name": "file_size_bytes",
+        "comment": "",
+        "dataType": "bigint",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 86,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_checksum": {
+        "id": "col_videos_checksum",
+        "tableId": "tbl_videos",
+        "name": "checksum",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_codec": {
+        "id": "col_videos_codec",
+        "tableId": "tbl_videos",
+        "name": "codec",
+        "comment": "",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_videos_created_at": {
+        "id": "col_videos_created_at",
+        "tableId": "tbl_videos",
+        "name": "created_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 63,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_id": {
+        "id": "col_events_id",
+        "tableId": "tbl_events",
+        "name": "id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_camera_id": {
+        "id": "col_events_camera_id",
+        "tableId": "tbl_events",
+        "name": "camera_id",
+        "comment": "FK -> cameras.id",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 61,
+          "widthComment": 99,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_video_id": {
+        "id": "col_events_video_id",
+        "tableId": "tbl_events",
+        "name": "video_id",
+        "comment": "FK -> videos.id (nullable)",
+        "dataType": "uuid",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 144,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_ts": {
+        "id": "col_events_ts",
+        "tableId": "tbl_events",
+        "name": "ts",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_type": {
+        "id": "col_events_type",
+        "tableId": "tbl_events",
+        "name": "type",
+        "comment": "person/vehicle/intrusion/…",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 150,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_severity": {
+        "id": "col_events_severity",
+        "tableId": "tbl_events",
+        "name": "severity",
+        "comment": "0=info,1=warn,2=alert",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 125,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_score": {
+        "id": "col_events_score",
+        "tableId": "tbl_events",
+        "name": "score",
+        "comment": "0~1",
+        "dataType": "numeric(4,3)",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 75,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_bbox_x": {
+        "id": "col_events_bbox_x",
+        "tableId": "tbl_events",
+        "name": "bbox_x",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_bbox_y": {
+        "id": "col_events_bbox_y",
+        "tableId": "tbl_events",
+        "name": "bbox_y",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_bbox_w": {
+        "id": "col_events_bbox_w",
+        "tableId": "tbl_events",
+        "name": "bbox_w",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_bbox_h": {
+        "id": "col_events_bbox_h",
+        "tableId": "tbl_events",
+        "name": "bbox_h",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_frame_index": {
+        "id": "col_events_frame_index",
+        "tableId": "tbl_events",
+        "name": "frame_index",
+        "comment": "",
+        "dataType": "int",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 72,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_thumb_path": {
+        "id": "col_events_thumb_path",
+        "tableId": "tbl_events",
+        "name": "thumb_path",
+        "comment": "이벤트 썸네일 경로",
+        "dataType": "text",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 70,
+          "widthComment": 92,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_meta_json": {
+        "id": "col_events_meta_json",
+        "tableId": "tbl_events",
+        "name": "meta_json",
+        "comment": "추가 속성(JSONB)",
+        "dataType": "jsonb",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 62,
+          "widthComment": 96,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_events_created_at": {
+        "id": "col_events_created_at",
+        "tableId": "tbl_events",
+        "name": "created_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 63,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_id": {
+        "id": "col_logs_id",
+        "tableId": "tbl_status_logs",
+        "name": "id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_camera_id": {
+        "id": "col_logs_camera_id",
+        "tableId": "tbl_status_logs",
+        "name": "camera_id",
+        "comment": "FK -> cameras.id",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 61,
+          "widthComment": 99,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_prev_status": {
+        "id": "col_logs_prev_status",
+        "tableId": "tbl_status_logs",
+        "name": "prev_status",
+        "comment": "이전 상태",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 68,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_new_status": {
+        "id": "col_logs_new_status",
+        "tableId": "tbl_status_logs",
+        "name": "new_status",
+        "comment": "변경 상태",
+        "dataType": "varchar",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 66,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_reason": {
+        "id": "col_logs_reason",
+        "tableId": "tbl_status_logs",
+        "name": "reason",
+        "comment": "사유",
+        "dataType": "text",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_ts": {
+        "id": "col_logs_ts",
+        "tableId": "tbl_status_logs",
+        "name": "ts",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "col_logs_created_at": {
+        "id": "col_logs_created_at",
+        "tableId": "tbl_status_logs",
+        "name": "created_at",
+        "comment": "",
+        "dataType": "timestamptz",
+        "default": "now()",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 63,
+          "widthComment": 60,
+          "widthDataType": 72,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "9scVyZXLh0L34uUIjRJRg": {
+        "id": "9scVyZXLh0L34uUIjRJRg",
+        "tableId": "tbl_cameras",
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520731126,
+          "createAt": 1755520731126
+        }
+      },
+      "rZLbvZGtgA069aZdLmf9C": {
+        "id": "rZLbvZGtgA069aZdLmf9C",
+        "tableId": "tbl_users",
+        "name": "id",
+        "comment": "예: cam-001",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 69,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520747496,
+          "createAt": 1755520747495
+        }
+      },
+      "OauBhvoj03EqrSVxgWEpV": {
+        "id": "OauBhvoj03EqrSVxgWEpV",
+        "tableId": "tbl_cameras",
+        "name": "id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520796310,
+          "createAt": 1755520796310
+        }
+      },
+      "qPJGudQq_D5mWsh2lrY6G": {
+        "id": "qPJGudQq_D5mWsh2lrY6G",
+        "tableId": "tbl_cameras",
+        "name": "user_id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520863013,
+          "createAt": 1755520863013
+        }
+      },
+      "4V63XuPGLE1ZL913qHWiJ": {
+        "id": "4V63XuPGLE1ZL913qHWiJ",
+        "tableId": "tbl_videos",
+        "name": "camera_id",
+        "comment": "예: cam-001",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 61,
+          "widthComment": 69,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520906260,
+          "createAt": 1755520906259
+        }
+      },
+      "K5Igjq3sOybNNXCMvsEmK": {
+        "id": "K5Igjq3sOybNNXCMvsEmK",
+        "tableId": "tbl_events",
+        "name": "video_id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755520971513,
+          "createAt": 1755520936226
+        }
+      },
+      "et4CcwHFXsUNeZ0ETxIfM": {
+        "id": "et4CcwHFXsUNeZ0ETxIfM",
+        "tableId": "tbl_events",
+        "name": "camera_id",
+        "comment": "예: cam-001",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 61,
+          "widthComment": 69,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755520983644,
+          "createAt": 1755520983644
+        }
+      },
+      "vJ_Q-oDoh9twPaVmJ9sPs": {
+        "id": "vJ_Q-oDoh9twPaVmJ9sPs",
+        "tableId": "tbl_cameras",
+        "name": "video_id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 8,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755521057026,
+          "createAt": 1755521057026
+        }
+      },
+      "4FBiyBsfB5TKH8mxgGILs": {
+        "id": "4FBiyBsfB5TKH8mxgGILs",
+        "tableId": "tbl_videos",
+        "name": "camera_id",
+        "comment": "예: cam-001",
+        "dataType": "varchar",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 61,
+          "widthComment": 69,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1755521068009,
+          "createAt": 1755521068009
+        }
+      },
+      "RRHzCd1VKZx0It4yiLCFz": {
+        "id": "RRHzCd1VKZx0It4yiLCFz",
+        "tableId": "tbl_cameras",
+        "name": "user_id",
+        "comment": "",
+        "dataType": "uuid",
+        "default": "gen_random_uuid()",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 114
+        },
+        "meta": {
+          "updateAt": 1755521099795,
+          "createAt": 1755521099795
+        }
+      }
+    },
+    "relationshipEntities": {
+      "rel_usercams_user": {
+        "id": "rel_usercams_user",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_users",
+          "columnIds": [
+            "col_users_id"
+          ],
+          "x": 784.4445,
+          "y": 578.2221999999999,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "tbl_user_cameras",
+          "columnIds": [
+            "col_usercams_user_id"
+          ],
+          "x": 644.7778000000001,
+          "y": 568.4444,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "rel_usercams_camera": {
+        "id": "rel_usercams_camera",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 784.4444,
+          "y": 201.5556,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "tbl_user_cameras",
+          "columnIds": [
+            "col_usercams_camera_id"
+          ],
+          "x": 644.7778000000001,
+          "y": 492.4444,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "rel_videos_camera": {
+        "id": "rel_videos_camera",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1229.4443999999999,
+          "y": 133.5556,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "tbl_videos",
+          "columnIds": [
+            "col_videos_camera_id"
+          ],
+          "x": 1420,
+          "y": 192,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "rel_events_camera": {
+        "id": "rel_events_camera",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1229.4443999999999,
+          "y": 269.5556,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "tbl_events",
+          "columnIds": [
+            "col_events_camera_id"
+          ],
+          "x": 1426.6667,
+          "y": 592.2221999999999,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "rel_events_video": {
+        "id": "rel_events_video",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 1,
+        "start": {
+          "tableId": "tbl_videos",
+          "columnIds": [
+            "col_videos_id"
+          ],
+          "x": 1636,
+          "y": 328,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "tbl_events",
+          "columnIds": [
+            "col_events_video_id"
+          ],
+          "x": 1635.0556,
+          "y": 432.2222,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "rel_logs_camera": {
+        "id": "rel_logs_camera",
+        "identification": false,
+        "relationshipType": 2,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1016.5,
+          "y": 352,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "tbl_status_logs",
+          "columnIds": [
+            "col_logs_camera_id"
+          ],
+          "x": 1032,
+          "y": 460,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "ax01poW7N3rJqkaxJiktW": {
+        "id": "ax01poW7N3rJqkaxJiktW",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1015.5,
+          "y": 328,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "tbl_users",
+          "columnIds": [
+            "rZLbvZGtgA069aZdLmf9C"
+          ],
+          "x": 1007.4445,
+          "y": 442.2222,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1755520747496,
+          "createAt": 1755520747496
+        }
+      },
+      "1Gmw3Pt_kQnjY0hQDycTD": {
+        "id": "1Gmw3Pt_kQnjY0hQDycTD",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_users",
+          "columnIds": [
+            "col_users_id"
+          ],
+          "x": 1007.4445,
+          "y": 442.2222,
+          "direction": 4
+        },
+        "end": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "OauBhvoj03EqrSVxgWEpV"
+          ],
+          "x": 1006.9444,
+          "y": 337.5556,
+          "direction": 8
+        },
+        "meta": {
+          "updateAt": 1755520796310,
+          "createAt": 1755520796310
+        }
+      },
+      "T-g0f9ZsPxPp3ES8Adjna": {
+        "id": "T-g0f9ZsPxPp3ES8Adjna",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_users",
+          "columnIds": [
+            "col_users_id"
+          ],
+          "x": 1047.4445,
+          "y": 455.5556,
+          "direction": 4
+        },
+        "end": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "qPJGudQq_D5mWsh2lrY6G"
+          ],
+          "x": 1046.9443,
+          "y": 322.0001,
+          "direction": 8
+        },
+        "meta": {
+          "updateAt": 1755520863013,
+          "createAt": 1755520863013
+        }
+      },
+      "pZqN7VZmDZ6M4RzQz1npg": {
+        "id": "pZqN7VZmDZ6M4RzQz1npg",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1269.4443,
+          "y": 118.0001,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "tbl_videos",
+          "columnIds": [
+            "4V63XuPGLE1ZL913qHWiJ"
+          ],
+          "x": 1348.8889,
+          "y": 170.6667,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1755520906260,
+          "createAt": 1755520906260
+        }
+      },
+      "DWYeMHY2RtFsZvx-Byh-W": {
+        "id": "DWYeMHY2RtFsZvx-Byh-W",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_videos",
+          "columnIds": [
+            "col_videos_id"
+          ],
+          "x": 1564.8889,
+          "y": 270.6667,
+          "direction": 8
+        },
+        "end": {
+          "tableId": "tbl_events",
+          "columnIds": [
+            "K5Igjq3sOybNNXCMvsEmK"
+          ],
+          "x": 1640.9168,
+          "y": 456.6667,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1755520936226,
+          "createAt": 1755520936226
+        }
+      },
+      "xZeL2EtSc7Aftp_g6i5AW": {
+        "id": "xZeL2EtSc7Aftp_g6i5AW",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1269.4443,
+          "y": 254.0001,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "tbl_events",
+          "columnIds": [
+            "et4CcwHFXsUNeZ0ETxIfM"
+          ],
+          "x": 1431.4168,
+          "y": 456.6667,
+          "direction": 4
+        },
+        "meta": {
+          "updateAt": 1755520983644,
+          "createAt": 1755520983644
+        }
+      },
+      "-n8Hwu6TCTRLoxV6qvt5T": {
+        "id": "-n8Hwu6TCTRLoxV6qvt5T",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_videos",
+          "columnIds": [
+            "col_videos_id"
+          ],
+          "x": 1348.8889,
+          "y": 170.6667,
+          "direction": 1
+        },
+        "end": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "vJ_Q-oDoh9twPaVmJ9sPs"
+          ],
+          "x": 1269.4443,
+          "y": 124.0001,
+          "direction": 2
+        },
+        "meta": {
+          "updateAt": 1755521057026,
+          "createAt": 1755521057026
+        }
+      },
+      "8z6imtM2AcppY2LCjBKPS": {
+        "id": "8z6imtM2AcppY2LCjBKPS",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "col_cameras_id"
+          ],
+          "x": 1269.4443,
+          "y": 118.0001,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "tbl_videos",
+          "columnIds": [
+            "4FBiyBsfB5TKH8mxgGILs"
+          ],
+          "x": 1348.8889,
+          "y": 158.6667,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1755521068009,
+          "createAt": 1755521068009
+        }
+      },
+      "qOied5Ih3keLRKo0r7MF-": {
+        "id": "qOied5Ih3keLRKo0r7MF-",
+        "identification": false,
+        "relationshipType": 4,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "tbl_users",
+          "columnIds": [
+            "col_users_id"
+          ],
+          "x": 1046.3332,
+          "y": 497.7779,
+          "direction": 4
+        },
+        "end": {
+          "tableId": "tbl_cameras",
+          "columnIds": [
+            "RRHzCd1VKZx0It4yiLCFz"
+          ],
+          "x": 1046.9443,
+          "y": 322.0001,
+          "direction": 8
+        },
+        "meta": {
+          "updateAt": 1755521099795,
+          "createAt": 1755521099795
+        }
+      }
+    },
+    "indexEntities": {
+      "idx_users_email_unique": {
+        "id": "idx_users_email_unique",
+        "name": "idx_users_email_unique",
+        "tableId": "tbl_users",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": true,
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "idx_usercams_user_cam_unique": {
+        "id": "idx_usercams_user_cam_unique",
+        "name": "idx_usercams_user_cam_unique",
+        "tableId": "tbl_user_cameras",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": true,
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "idx_videos_cam_start": {
+        "id": "idx_videos_cam_start",
+        "name": "idx_videos_cam_start",
+        "tableId": "tbl_videos",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": false,
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "idx_events_cam_ts": {
+        "id": "idx_events_cam_ts",
+        "name": "idx_events_cam_ts",
+        "tableId": "tbl_events",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": false,
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "idx_events_type_ts": {
+        "id": "idx_events_type_ts",
+        "name": "idx_events_type_ts",
+        "tableId": "tbl_events",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": false,
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      },
+      "idx_statuslogs_cam_ts": {
+        "id": "idx_statuslogs_cam_ts",
+        "name": "idx_statuslogs_cam_ts",
+        "tableId": "tbl_status_logs",
+        "indexColumnIds": [],
+        "seqIndexColumnIds": [],
+        "unique": false,
+        "meta": {
+          "updateAt": 1755520552067,
+          "createAt": 1755520552067
+        }
+      }
+    },
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  }
+}
