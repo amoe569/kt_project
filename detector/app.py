@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CCTV AI Detector - YOLOv5 기반 RTSP 스트림 객체 탐지 및 이벤트 전송
+CCTV AI Detector - YOLOv8 기반 RTSP 스트림 객체 탐지 및 이벤트 전송
 """
 
 import os
@@ -39,27 +39,37 @@ camera_status = {cam_id: "UNKNOWN" for cam_id in RTSP_STREAMS.keys()}
 model = None
 
 def load_yolo_model():
-    """YOLOv5 모델 로드"""
+    """YOLOv8 모델 로드"""
     global model
     try:
-        print("YOLOv5 모델 로딩 중...")
-        # YOLOv5n 모델 로드 (더 빠른 추론을 위해)
-        model = YOLO('yolov5n.pt')
-        print("✅ YOLOv5n 모델 로딩 완료")
+        print("YOLOv8 모델 로딩 중...")
+        # YOLOv8n 모델 로드 (가장 가벼운 최신 모델)
+        model = YOLO('yolov8n.pt')
+        print("✅ YOLOv8n 모델 로딩 완료")
         return True
     except Exception as e:
-        print(f"❌ YOLOv5 모델 로딩 실패: {e}")
+        print(f"❌ YOLOv8 모델 로딩 실패: {e}")
         print("⚠️ 더미 탐지 모드로 실행됩니다.")
         return False
 
 def detect_objects_yolo(frame, camera_id):
-    """YOLOv5를 사용한 객체 탐지"""
+    """YOLOv8을 사용한 객체 탐지 - 사람과 차량만 필터링"""
     detections = []
     
+    # 사람과 차량 관련 클래스 정의
+    PERSON_VEHICLE_CLASSES = {
+        'person',      # 사람
+        'car',         # 자동차
+        'truck',       # 트럭
+        'bus',         # 버스
+        'motorcycle',  # 오토바이
+        'bicycle'      # 자전거
+    }
+    
     if model is None:
-        # 더미 탐지 (YOLOv5 로드 실패 시)
+        # 더미 탐지 (YOLOv8 로드 실패 시) - 사람과 차량만
         if np.random.random() < 0.05:  # 5% 확률로 이벤트 발생
-            detection_type = np.random.choice(["person", "car", "truck", "bicycle"])
+            detection_type = np.random.choice(list(PERSON_VEHICLE_CLASSES))
             score = np.random.uniform(0.6, 0.9)
             x = np.random.randint(100, frame.shape[1] - 100)
             y = np.random.randint(100, frame.shape[0] - 100)
@@ -68,7 +78,7 @@ def detect_objects_yolo(frame, camera_id):
             
             detections.append({
                 "type": detection_type,
-                "severity": np.random.randint(1, 4),
+                "severity": 3,  # 사람과 차량은 모두 높은 우선순위
                 "score": score,
                 "ts": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3],
                 "boundingBox": {"x": x, "y": y, "w": w, "h": h}
@@ -76,7 +86,7 @@ def detect_objects_yolo(frame, camera_id):
         return detections
     
     try:
-        # YOLOv5 탐지 수행
+        # YOLOv8 탐지 수행
         results = model(frame, verbose=False)
         
         for result in results:
@@ -92,33 +102,36 @@ def detect_objects_yolo(frame, camera_id):
                     conf = float(box.conf[0].cpu().numpy())
                     
                     if conf > SCORE_THRESHOLD:
-                        # 바운딩 박스 그리기
-                        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                        
-                        # 클래스 이름 및 신뢰도 표시
+                        # 클래스 이름 가져오기
                         class_name = model.names[cls]
-                        label = f'{class_name} {conf:.2f}'
-                        cv2.putText(frame, label, (x1, y1-10), 
-                                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
                         
-                        # 탐지 결과 저장
-                        detections.append({
-                            "type": class_name,
-                            "severity": 3 if class_name in ['person', 'car'] else 2,
-                            "score": conf,
-                            "ts": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3],
-                            "boundingBox": {
-                                "x": x1,
-                                "y": y1,
-                                "w": x2 - x1,
-                                "h": y2 - y1
-                            }
-                        })
-        
+                        # 사람과 차량 클래스만 필터링
+                        if class_name in PERSON_VEHICLE_CLASSES:
+                            # 바운딩 박스 그리기 (사람과 차량만)
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                            
+                            # 클래스 이름 및 신뢰도 표시
+                            label = f'{class_name} {conf:.2f}'
+                            cv2.putText(frame, label, (x1, y1-10), 
+                                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                            
+                            # 탐지 결과 저장 (사람과 차량만)
+                            detections.append({
+                                "type": class_name,
+                                "severity": 3,  # 사람과 차량은 모두 높은 우선순위
+                                "score": conf,
+                                "ts": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3],
+                                "boundingBox": {
+                                    "x": x1,
+                                    "y": y1,
+                                    "w": x2 - x1,
+                                    "h": y2 - y1
+                                }
+                            })
         return detections
         
     except Exception as e:
-        print(f"❌ {camera_id}: YOLOv5 탐지 중 오류 발생: {e}")
+        print(f"❌ {camera_id}: YOLOv8 탐지 중 오류 발생: {e}")
         return detections
 
 def send_event_to_api(camera_id, detection):
@@ -219,7 +232,7 @@ def capture_rtsp_stream(camera_id, rtsp_url):
                 frame_count += 1
                 camera_status[camera_id] = "ONLINE"
 
-                # YOLOv5 객체 탐지 수행 (cam-001, cam-002에서만)
+                # YOLOv8 객체 탐지 수행 (cam-001, cam-002에서만)
                 detections = []
                 if camera_id in ['cam-001', 'cam-002']:
                     detections = detect_objects_yolo(frame, camera_id)
@@ -298,7 +311,7 @@ def index():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>CCTV AI Detector - YOLOv5 RTSP Demo</title>
+        <title>CCTV AI Detector - YOLOv8 RTSP Demo</title>
         <style>
             body {{ font-family: Arial, sans-serif; margin: 20px; background: #1a1a1a; color: white; }}
             .container {{ max-width: 1200px; margin: 0 auto; }}
@@ -317,22 +330,24 @@ def index():
     <body>
         <div class="container">
             <div class="header">
-                <h1>🎥 CCTV AI Detector - YOLOv5 RTSP Demo</h1>
-                <p>실시간 RTSP 스트림 처리 및 YOLOv5 객체 탐지</p>
+                <h1>🎥 CCTV AI Detector - YOLOv8 RTSP Demo</h1>
+                <p>실시간 RTSP 스트림 처리 및 YOLOv8 객체 탐지</p>
             </div>
             
             <div class="status">
                 <h2>📊 시스템 상태</h2>
                 <p><strong>API 서버:</strong> <span class="online">{api_base}</span></p>
                 <p><strong>탐지 임계값:</strong> {threshold}</p>
-                <p><strong>YOLOv5 모델:</strong> <span class="{model_status_class}">{model_status}</span></p>
+                <p><strong>YOLOv8 모델:</strong> <span class="{model_status_class}">{model_status}</span></p>
                 <p><strong>RTSP 스트림:</strong> {rtsp_count}개 카메라 연결</p>
-                <p><strong>YOLOv5 적용:</strong> cam-001, cam-002 (2개 카메라)</p>
+                <p><strong>YOLOv8 적용:</strong> cam-001, cam-002 (2개 카메라)</p>
+                <p><strong>탐지 대상:</strong> 사람(person), 차량(car/truck/bus/motorcycle/bicycle)만</p>
+                <p><strong>이벤트 전송:</strong> 사람과 차량 탐지 시에만 Spring Boot API로 전송</p>
             </div>
             
             <div class="cameras">
                 <div class="camera">
-                    <h3>📹 {cam_001_name} <span style="color: #4CAF50;">[YOLOv5]</span></h3>
+                    <h3>📹 {cam_001_name} <span style="color: #4CAF50;">[YOLOv8]</span></h3>
                     <p>상태: <span class="{cam_001_status_class}">{cam_001_status}</span></p>
                     <p>RTSP: {cam_001_rtsp}</p>
                     <div class="stream">
@@ -341,7 +356,7 @@ def index():
                 </div>
 
                 <div class="camera">
-                    <h3>📹 {cam_002_name} <span style="color: #4CAF50;">[YOLOv5]</span></h3>
+                    <h3>📹 {cam_002_name} <span style="color: #4CAF50;">[YOLOv8]</span></h3>
                     <p>상태: <span class="{cam_002_status_class}">{cam_002_status}</span></p>
                     <p>RTSP: {cam_002_rtsp}</p>
                     <div class="stream">
@@ -489,12 +504,15 @@ def camera_status_page():
     return status_html
 
 if __name__ == '__main__':
-    print("🚀 CCTV AI Detector YOLOv5 RTSP Demo 시작 중...")
+    print("🚀 CCTV AI Detector YOLOv8 RTSP Demo 시작 중...")
     print(f"📹 RTSP 스트림: {len(RTSP_STREAMS)}개 카메라")
     print(f"🌐 API 서버: {API_BASE}")
     print(f"🎯 탐지 임계값: {SCORE_THRESHOLD}")
+    print(f"🎯 탐지 대상: 사람(person), 차량(car/truck/bus/motorcycle/bicycle)만")
+    print(f"📡 이벤트 전송: 사람과 차량 탐지 시에만 API 전송")
+    print(f"🚀 YOLOv8n 모델: 가장 가벼운 최신 모델 (6.7MB)")
     
-    # YOLOv5 모델 로드
+    # YOLOv8 모델 로드
     model_loaded = load_yolo_model()
     
     # RTSP 스트림 처리 스레드 시작
@@ -512,7 +530,7 @@ if __name__ == '__main__':
     print("📡 MJPEG 스트림: http://localhost:5001/stream/<camera_id>")
     print("🧪 API 테스트: http://localhost:5001/test")
     print("📊 상태 정보: http://localhost:5001/status")
-    print("\n💡 Spring Boot를 실행한 후 이 페이지에서 실시간 YOLOv5 객체 탐지를 확인하세요!")
+    print("\n💡 Spring Boot를 실행한 후 이 페이지에서 실시간 YOLOv8 객체 탐지를 확인하세요!")
 
     # Flask 앱 실행
     app.run(host='0.0.0.0', port=5001, debug=False, threaded=True)
