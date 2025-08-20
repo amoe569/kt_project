@@ -1,6 +1,7 @@
 package com.cctv.controlcenter.service;
 
 import com.cctv.controlcenter.api.dto.EventCreateRequest;
+import com.cctv.controlcenter.api.dto.TrafficEventRequest;
 import com.cctv.controlcenter.domain.Camera;
 import com.cctv.controlcenter.domain.Event;
 import com.cctv.controlcenter.domain.Video;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -79,6 +82,67 @@ public class EventService {
         
         Event savedEvent = eventRepository.save(event);
         log.info("이벤트 생성 완료: id={}, type={}, score={}", savedEvent.getId(), savedEvent.getType(), savedEvent.getScore());
+        
+        // SSE 구독자들에게 이벤트 브로드캐스트
+        broadcastEvent(savedEvent);
+        
+        return savedEvent;
+    }
+    
+    @Transactional
+    public Event createTrafficEvent(TrafficEventRequest request) {
+        log.info("통행량 많음 이벤트 생성 요청: {}", request);
+        
+        // 카메라 존재 여부 확인
+        Camera camera = cameraRepository.findById(request.getCameraId())
+                .orElseThrow(() -> new IllegalArgumentException("카메라를 찾을 수 없습니다: " + request.getCameraId()));
+        
+        // 카메라 상태를 WARNING으로 변경
+        camera.setStatus(Camera.CameraStatus.WARNING);
+        cameraRepository.save(camera);
+        log.info("카메라 {} 상태를 WARNING으로 변경", request.getCameraId());
+        
+        // String 타임스탬프를 LocalDateTime으로 변환
+        LocalDateTime eventTime;
+        try {
+            eventTime = LocalDateTime.parse(request.getTs(), DateTimeFormatter.ISO_DATE_TIME);
+        } catch (Exception e) {
+            log.warn("타임스탬프 파싱 실패, 현재 시간 사용: {}", request.getTs());
+            eventTime = LocalDateTime.now();
+        }
+        
+        // 이벤트 생성
+        Event event = new Event();
+        event.setId(UUID.randomUUID());
+        event.setCamera(camera);
+        event.setTs(eventTime);
+        event.setType(request.getType());
+        event.setSeverity(request.getSeverity());
+        event.setScore(request.getScore());
+        
+        // 바운딩 박스를 JSON으로 저장
+        if (request.getBoundingBox() != null) {
+            String bboxJson = String.format(
+                "{\"x\":%d,\"y\":%d,\"w\":%d,\"h\":%d}",
+                request.getBoundingBox().getX(),
+                request.getBoundingBox().getY(),
+                request.getBoundingBox().getW(),
+                request.getBoundingBox().getH()
+            );
+            event.setBboxJson(bboxJson);
+        }
+        
+        // 차량 수와 메시지를 메타 JSON에 저장
+        String metaJson = String.format(
+            "{\"vehicleCount\":%d,\"message\":\"%s\"}",
+            request.getVehicleCount(),
+            request.getMessage()
+        );
+        event.setMetaJson(metaJson);
+        
+        Event savedEvent = eventRepository.save(event);
+        log.info("통행량 많음 이벤트 생성 완료: id={}, 차량수={}, 메시지={}", 
+                savedEvent.getId(), request.getVehicleCount(), request.getMessage());
         
         // SSE 구독자들에게 이벤트 브로드캐스트
         broadcastEvent(savedEvent);

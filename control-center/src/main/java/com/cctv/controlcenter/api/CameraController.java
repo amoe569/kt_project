@@ -41,4 +41,21 @@ public class CameraController {
         Camera camera = cameraService.getCameraById(id, userId);
         return ResponseEntity.ok(camera);
     }
+    
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Camera> updateCameraStatus(@PathVariable String id, @RequestParam String status) {
+        // TODO: 실제 사용자 ID를 보안 컨텍스트에서 가져와야 함
+        UUID userId = UUID.fromString("550e8400-e29b-41d4-a716-446655440001"); // data.sql의 사용자 ID
+        
+        log.info("카메라 {} 상태 변경 요청: {} (사용자: {})", id, status, userId);
+        
+        try {
+            Camera.CameraStatus newStatus = Camera.CameraStatus.valueOf(status.toUpperCase());
+            Camera updatedCamera = cameraService.updateCameraStatus(id, newStatus, userId);
+            return ResponseEntity.ok(updatedCamera);
+        } catch (IllegalArgumentException e) {
+            log.error("잘못된 카메라 상태: {}", status);
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

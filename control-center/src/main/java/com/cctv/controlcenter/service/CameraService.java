@@ -5,6 +5,7 @@ import com.cctv.controlcenter.repository.CameraRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,5 +40,22 @@ public class CameraService {
         }
         
         return camera;
+    }
+    
+    @Transactional
+    public Camera updateCameraStatus(String cameraId, Camera.CameraStatus newStatus, UUID userId) {
+        log.info("카메라 {} 상태 변경: {} (사용자 ID: {})", cameraId, newStatus, userId);
+        
+        // 카메라 조회 및 권한 확인
+        Camera camera = getCameraById(cameraId, userId);
+        
+        // 상태 변경
+        Camera.CameraStatus oldStatus = camera.getStatus();
+        camera.setStatus(newStatus);
+        
+        Camera updatedCamera = cameraRepository.save(camera);
+        log.info("카메라 {} 상태 변경 완료: {} -> {}", cameraId, oldStatus, newStatus);
+        
+        return updatedCamera;
     }
 }

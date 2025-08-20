@@ -113,6 +113,6 @@ public class Camera {
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
     
     public enum CameraStatus {
-        ONLINE, OFFLINE, MAINTENANCE, ERROR
+        ONLINE, OFFLINE, MAINTENANCE, ERROR, WARNING
     }
 }

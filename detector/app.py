@@ -56,6 +56,17 @@ def detect_objects_yolo(frame, camera_id):
     """YOLOv8을 사용한 객체 탐지 - 사람과 차량만 필터링"""
     detections = []
     
+    # 프레임 크기를 일관되게 조정 (YOLOv8 호환성)
+    try:
+        # 원본 프레임 크기 저장
+        original_height, original_width = frame.shape[:2]
+        
+        # 프레임을 640x640으로 리사이즈 (YOLOv8 표준 입력 크기)
+        resized_frame = cv2.resize(frame, (640, 640))
+    except Exception as e:
+        print(f"❌ {camera_id}: 프레임 리사이즈 실패: {e}")
+        return detections
+    
     # 사람과 차량 관련 클래스 정의
     PERSON_VEHICLE_CLASSES = {
         'person',      # 사람
@@ -86,14 +97,14 @@ def detect_objects_yolo(frame, camera_id):
         return detections
     
     try:
-        # YOLOv8 탐지 수행
-        results = model(frame, verbose=False)
+        # YOLOv8 탐지 수행 (리사이즈된 프레임 사용)
+        results = model(resized_frame, verbose=False)
         
         for result in results:
             boxes = result.boxes
             if boxes is not None:
                 for box in boxes:
-                    # 바운딩 박스 좌표
+                    # 바운딩 박스 좌표 (640x640 기준)
                     x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
                     
@@ -107,25 +118,35 @@ def detect_objects_yolo(frame, camera_id):
                         
                         # 사람과 차량 클래스만 필터링
                         if class_name in PERSON_VEHICLE_CLASSES:
-                            # 바운딩 박스 그리기 (사람과 차량만)
-                            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                            # 바운딩 박스를 원본 프레임 크기에 맞게 스케일링
+                            scale_x = original_width / 640.0
+                            scale_y = original_height / 640.0
+                            
+                            # 스케일링된 좌표 계산
+                            scaled_x1 = int(x1 * scale_x)
+                            scaled_y1 = int(y1 * scale_y)
+                            scaled_x2 = int(x2 * scale_x)
+                            scaled_y2 = int(y2 * scale_y)
+                            
+                            # 바운딩 박스 그리기 (원본 프레임에)
+                            cv2.rectangle(frame, (scaled_x1, scaled_y1), (scaled_x2, scaled_y2), (0, 255, 0), 2)
                             
                             # 클래스 이름 및 신뢰도 표시
                             label = f'{class_name} {conf:.2f}'
-                            cv2.putText(frame, label, (x1, y1-10), 
+                            cv2.putText(frame, label, (scaled_x1, scaled_y1-10), 
                                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
                             
-                            # 탐지 결과 저장 (사람과 차량만)
+                            # 탐지 결과 저장 (스케일링된 좌표 사용)
                             detections.append({
                                 "type": class_name,
                                 "severity": 3,  # 사람과 차량은 모두 높은 우선순위
                                 "score": conf,
                                 "ts": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3],
                                 "boundingBox": {
-                                    "x": x1,
-                                    "y": y1,
-                                    "w": x2 - x1,
-                                    "h": y2 - y1
+                                    "x": scaled_x1,
+                                    "y": scaled_y1,
+                                    "w": scaled_x2 - scaled_x1,
+                                    "h": scaled_y2 - scaled_y1
                                 }
                             })
         return detections
@@ -135,7 +156,7 @@ def detect_objects_yolo(frame, camera_id):
         return detections
 
 def send_event_to_api(camera_id, detection):
-    """Spring Boot API로 이벤트 전송"""
+    """Spring Boot API로 이벤트 전송 (기존 함수 - 사용하지 않음)"""
     event_data = {
         "cameraId": camera_id,
         "type": detection["type"],
@@ -158,6 +179,49 @@ def send_event_to_api(camera_id, detection):
             print(f"❌ {camera_id}: 이벤트 전송 실패 - HTTP {response.status_code}")
     except Exception as e:
         print(f"❌ {camera_id}: 이벤트 전송 오류: {e}")
+
+def send_traffic_event_to_api(camera_id, traffic_event):
+    """Spring Boot API로 '통행량 많음' 이벤트 전송"""
+    event_data = {
+        "cameraId": camera_id,
+        "type": "traffic_heavy",
+        "severity": 2,  # 경고 레벨
+        "score": 1.0,
+        "ts": traffic_event["ts"],
+        "boundingBox": traffic_event["boundingBox"],
+        "vehicleCount": traffic_event["vehicle_count"],
+        "message": f"차량 {traffic_event['vehicle_count']}대 감지로 인한 통행량 많음"
+    }
+    
+    print(f"🚗 {camera_id}: 이벤트 전송 시도 - {event_data}")
+    print(f"🌐 API URL: {API_BASE}/api/events/traffic")
+    
+    try:
+        response = requests.post(
+            f"{API_BASE}/api/events/traffic",
+            json=event_data,
+            headers={"Content-Type": "application/json"},
+            timeout=10
+        )
+        
+        print(f"📡 응답 상태: HTTP {response.status_code}")
+        print(f"📡 응답 헤더: {dict(response.headers)}")
+        
+        if response.status_code == 200:
+            result = response.json()
+            print(f"✅ {camera_id}: '통행량 많음' 이벤트 전송 성공")
+            print(f"📋 응답 데이터: {result}")
+        else:
+            print(f"❌ {camera_id}: '통행량 많음' 이벤트 전송 실패 - HTTP {response.status_code}")
+            print(f"📋 오류 응답: {response.text}")
+            
+    except requests.exceptions.ConnectionError as e:
+        print(f"❌ {camera_id}: 연결 오류 - Spring Boot 서버가 실행 중인지 확인하세요: {e}")
+    except requests.exceptions.Timeout as e:
+        print(f"❌ {camera_id}: 타임아웃 오류: {e}")
+    except Exception as e:
+        print(f"❌ {camera_id}: '통행량 많음' 이벤트 전송 오류: {e}")
+        print(f"🔍 오류 타입: {type(e).__name__}")
 
 def send_video_metadata(camera_id, frame):
     """비디오 메타데이터 전송"""
@@ -196,8 +260,15 @@ def capture_rtsp_stream(camera_id, rtsp_url):
             cap = cv2.VideoCapture(rtsp_url)
             cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
             cap.set(cv2.CAP_PROP_FPS, 10)  # FPS 설정
-            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)  # 너비 설정
-            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # 높이 설정
+            
+            # 프레임 크기를 일관되게 설정 (YOLOv8 호환성)
+            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+            
+            # 실제 프레임 크기 확인 및 조정
+            actual_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            actual_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            print(f"📹 {camera_id}: 실제 프레임 크기 {actual_width}x{actual_height}")
 
             if not cap.isOpened():
                 print(f"❌ {camera_id}: RTSP 스트림 연결 실패 (시도 {reconnect_count + 1}/{max_reconnect_attempts})")
@@ -236,18 +307,40 @@ def capture_rtsp_stream(camera_id, rtsp_url):
                 detections = []
                 if camera_id in ['cam-001', 'cam-002']:
                     detections = detect_objects_yolo(frame, camera_id)
-                    # 탐지된 객체가 있으면 이벤트 전송
+                    
+                    # 차량 클래스만 필터링하여 개수 계산
+                    vehicle_count = 0
                     for detection in detections:
-                        if detection['score'] >= SCORE_THRESHOLD:
-                            send_event_to_api(camera_id, detection)
-                            last_detection_time = time.time()
+                        if detection['type'] in ['car', 'truck', 'bus', 'motorcycle']:
+                            vehicle_count += 1
+                    
+                    # 차량이 10대 이상일 때만 '통행량 많음' 이벤트 전송
+                    if vehicle_count >= 10:
+                        traffic_event = {
+                            "type": "traffic_heavy",
+                            "severity": 2,  # 경고 레벨
+                            "score": 1.0,
+                            "ts": datetime.now().isoformat(),
+                            "boundingBox": {"x": 0, "y": 0, "w": 0, "h": 0},
+                            "vehicle_count": vehicle_count
+                        }
+                        send_traffic_event_to_api(camera_id, traffic_event)
+                        print(f"🚗 {camera_id}: 차량 {vehicle_count}대 감지 - '통행량 많음' 이벤트 전송")
+                    
+                    # 차량이 10대 이상일 때만 로그 출력
+                    if vehicle_count >= 10:
+                        print(f"🚗 {camera_id}: 차량 {vehicle_count}대 감지 - '통행량 많음' 이벤트 발생")
+                    # 10개 미만일 때는 로그 출력하지 않음
 
                 with camera_locks[camera_id]:
                     camera_frames[camera_id] = frame.copy()
 
-                # 5초마다 비디오 메타데이터 전송
-                if frame_count % 150 == 0:  # 30fps * 5초
-                    send_video_metadata(camera_id, frame)
+                # 30초마다 비디오 메타데이터 전송 (빈도 줄임)
+                if frame_count % 300 == 0:  # 10fps * 30초
+                    try:
+                        send_video_metadata(camera_id, frame)
+                    except Exception as e:
+                        print(f"⚠️ {camera_id}: 비디오 메타데이터 전송 스킵: {e}")
 
                 time.sleep(0.01)
 
@@ -273,15 +366,19 @@ def generate_mjpeg_stream(camera_id):
             if camera_frames[camera_id] is not None:
                 frame = camera_frames[camera_id].copy()
             else:
-                # 프레임이 없으면 더미 프레임 생성
+                # 프레임이 없으면 더미 프레임 생성 (더 나은 품질)
                 frame = np.zeros((480, 640, 3), dtype=np.uint8)
-                frame[:] = (64, 64, 64)
-                cv2.putText(frame, f"Camera {camera_id}", (50, 200), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-                cv2.putText(frame, "No Signal", (50, 250), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-                cv2.putText(frame, "RTSP Connection Failed", (50, 300), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+                frame[:] = (32, 32, 32)  # 더 어두운 배경
+                
+                # 중앙에 카메라 정보 표시
+                cv2.putText(frame, f"Camera {camera_id}", (200, 180), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 1.2, (255, 255, 255), 2)
+                cv2.putText(frame, "No Signal", (250, 230), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 100), 2)
+                cv2.putText(frame, "RTSP Connection Failed", (180, 280), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.8, (200, 200, 200), 2)
+                cv2.putText(frame, "Check Detector Console", (200, 320), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.6, (150, 150, 150), 1)
 
         # 프레임에 카메라 ID와 상태 표시
         status = camera_status.get(camera_id, "UNKNOWN")
@@ -325,6 +422,63 @@ def index():
             .online {{ color: #4CAF50; }}
             .error {{ color: #f44336; }}
             .offline {{ color: #FF9800; }}
+            
+            .test-event-panel {{
+                background: #333;
+                padding: 20px;
+                border-radius: 10px;
+                margin: 20px 0;
+                border: 2px solid #4CAF50;
+            }}
+            
+            .test-event-panel h2 {{
+                color: #4CAF50;
+                margin-bottom: 15px;
+            }}
+            
+            .test-form {{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }}
+            
+            .test-form select, .test-form button {{
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #666;
+                background: #444;
+                color: white;
+                font-size: 16px;
+            }}
+            
+            .test-form button {{
+                background: #4CAF50;
+                cursor: pointer;
+                font-weight: bold;
+            }}
+            
+            .test-form button:hover {{
+                background: #45a049;
+            }}
+            
+            .test-result {{
+                margin-top: 15px;
+                padding: 10px;
+                border-radius: 5px;
+                display: none;
+            }}
+            
+            .test-result.success {{
+                background: #2d5a2d;
+                border: 1px solid #4CAF50;
+                color: #4CAF50;
+            }}
+            
+            .test-result.error {{
+                background: #5a2d2d;
+                border: 1px solid #f44336;
+                color: #f44336;
+            }}
         </style>
     </head>
     <body>
@@ -383,12 +537,86 @@ def index():
                 </div>
             </div>
             
+            <div class="test-event-panel">
+                <h2>🧪 테스트 이벤트 발령</h2>
+                <div class="test-form">
+                    <select id="testCameraSelect">
+                        <option value="">카메라 선택</option>
+                        <option value="cam-001">세집매 삼거리 (cam-001)</option>
+                        <option value="cam-002">서부역 입구 삼거리 (cam-002)</option>
+                        <option value="cam-003">역말 오거리 (cam-003)</option>
+                        <option value="cam-004">천안로사거리 (cam-004)</option>
+                    </select>
+                    <button onclick="sendTestEvent()">🚗 통행량 많음 이벤트 발령</button>
+                    <div id="testResult" class="test-result"></div>
+                </div>
+            </div>
+            
             <div class="status">
                 <h2>🧪 API 테스트</h2>
                 <p><a href="/test" target="_blank">Spring Boot API 연결 테스트</a></p>
                 <p><a href="/status" target="_blank">카메라 상태 상세 정보</a></p>
             </div>
         </div>
+        
+        <script>
+            function sendTestEvent() {{
+                const selectedCameraId = document.getElementById('testCameraSelect').value;
+                const resultDiv = document.getElementById('testResult');
+                
+                if (!selectedCameraId) {{
+                    showResult('카메라를 선택해주세요.', 'error');
+                    return;
+                }}
+                
+                const testEvent = {{
+                    cameraId: selectedCameraId,
+                    type: "traffic_heavy",
+                    severity: 2,
+                    score: 1.0,
+                    ts: new Date().toISOString(),
+                    boundingBox: {{x: 0, y: 0, w: 0, h: 0}},
+                    vehicleCount: 15,
+                    message: "테스트: 차량 15대 감지로 인한 통행량 많음"
+                }};
+                
+                showResult('이벤트 전송 중...', 'success');
+                
+                fetch('{API_BASE}/api/events/traffic', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                    }},
+                    body: JSON.stringify(testEvent)
+                }})
+                .then(response => {{
+                    if (!response.ok) {{
+                        throw new Error(`HTTP ${{response.status}}: ${{response.statusText}}`);
+                    }}
+                    return response.json();
+                }})
+                .then(result => {{
+                    console.log('테스트 이벤트 성공:', result);
+                    showResult(`✅ 테스트 이벤트 성공! ${{selectedCameraId}}에 통행량 많음 이벤트가 발령되었습니다.`, 'success');
+                }})
+                .catch(error => {{
+                    console.error('테스트 이벤트 실패:', error);
+                    showResult(`❌ 테스트 이벤트 실패: ${{error.message}}`, 'error');
+                }});
+            }}
+            
+            function showResult(message, type) {{
+                const resultDiv = document.getElementById('testResult');
+                resultDiv.textContent = message;
+                resultDiv.className = `test-result ${{type}}`;
+                resultDiv.style.display = 'block';
+                
+                // 3초 후 자동 숨김
+                setTimeout(() => {{
+                    resultDiv.style.display = 'none';
+                }}, 3000);
+            }}
+        </script>
     </body>
     </html>
     """
@@ -398,6 +626,7 @@ def index():
     
     return html.format(
         api_base=API_BASE,
+        API_BASE=API_BASE,
         threshold=SCORE_THRESHOLD,
         model_status=model_status,
         model_status_class=model_status_class,
@@ -426,9 +655,28 @@ def stream(camera_id):
     if camera_id not in RTSP_STREAMS:
         return "Camera not found", 404
     
+    print(f"📹 스트림 요청: {camera_id}")
+    print(f"📹 카메라 상태: {camera_status.get(camera_id, 'UNKNOWN')}")
+    print(f"📹 프레임 존재: {camera_frames[camera_id] is not None}")
+    
     def generate():
-        for frame_data in generate_mjpeg_stream(camera_id):
-            yield frame_data
+        try:
+            for frame_data in generate_mjpeg_stream(camera_id):
+                yield frame_data
+        except Exception as e:
+            print(f"❌ 스트림 생성 오류 ({camera_id}): {e}")
+            # 오류 발생 시 더미 프레임 생성
+            error_frame = np.zeros((480, 640, 3), dtype=np.uint8)
+            error_frame[:] = (64, 64, 64)
+            cv2.putText(error_frame, f"Stream Error: {camera_id}", (150, 240), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 100, 100), 2)
+            
+            ret, buffer = cv2.imencode('.jpg', error_frame, [cv2.IMWRITE_JPEG_QUALITY, 90])
+            if ret:
+                frame_data = buffer.tobytes()
+                yield (b'--frame\r\n'
+                       b'Content-Type: image/jpeg\r\n'
+                       b'Content-Length: ' + str(len(frame_data)).encode() + b'\r\n\r\n' + frame_data + b'\r\n')
     
     response = Response(
         generate(),
@@ -439,6 +687,14 @@ def stream(camera_id):
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    
+    # 강화된 캐시 방지 헤더
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    response.headers['Last-Modified'] = 'Thu, 01 Jan 1970 00:00:00 GMT'
+    response.headers['ETag'] = ''
+    response.headers['Connection'] = 'close'
     
     return response
 
@@ -464,6 +720,8 @@ def test_api():
             return f"❌ API 오류: HTTP {response.status_code}"
     except Exception as e:
         return f"❌ 연결 실패: {e}"
+
+
 
 @app.route('/status')
 def camera_status_page():

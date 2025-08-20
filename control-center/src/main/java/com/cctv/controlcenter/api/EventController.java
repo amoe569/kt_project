@@ -1,6 +1,7 @@
 package com.cctv.controlcenter.api;
 
 import com.cctv.controlcenter.api.dto.EventCreateRequest;
+import com.cctv.controlcenter.api.dto.TrafficEventRequest;
 import com.cctv.controlcenter.domain.Event;
 import com.cctv.controlcenter.service.EventService;
 import jakarta.validation.Valid;
@@ -42,5 +43,12 @@ public class EventController {
         log.info("카메라 {}의 이벤트 목록 조회", cameraId);
         List<Event> events = eventService.getEventsByCamera(cameraId);
         return ResponseEntity.ok(events);
+    }
+    
+    @PostMapping("/traffic")
+    public ResponseEntity<Event> createTrafficEvent(@Valid @RequestBody TrafficEventRequest request) {
+        log.info("통행량 많음 이벤트 생성 요청: {}", request);
+        Event event = eventService.createTrafficEvent(request);
+        return ResponseEntity.ok(event);
     }
 }
