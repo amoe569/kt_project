@@ -193,8 +193,8 @@
         }
         
         .events-list {
-            height: calc(100% - 60px);
-            max-height: 400px;
+            height: calc(100% - 160px); /* 상태 변경 패널 공간 확보 */
+            max-height: 300px;
             overflow-y: auto;
             padding-right: 5px;
         }
@@ -270,11 +270,11 @@
         }
         
         .status-control-panel {
-            background-color: #2d2d2d;
-            border-radius: 12px;
+            background-color: #3d3d3d;
+            border-radius: 8px;
             padding: 1rem;
-            margin-bottom: 1rem;
-            border: 2px solid #667eea;
+            margin-bottom: 1.5rem;
+            border: 1px solid #667eea;
         }
         
         .status-control-title {
@@ -362,11 +362,9 @@
     <div class="main-container">
         <nav class="sidebar">
             <ul class="sidebar-menu">
-                <li><a href="/">대시보드</a></li>
-                <li><a href="/cameras" class="active">실시간 모니터링</a></li>
+                <li><a href="/" class="active">대시보드</a></li>
                 <li><a href="/events">이벤트 관리</a></li>
                 <li><a href="/videos">저장 영상</a></li>
-                <li><a href="/settings">설정</a></li>
             </ul>
         </nav>
         
@@ -403,24 +401,7 @@
                 </div>
             </div>
             
-            <!-- 카메라 상태 변경 패널 -->
-            <div th:if="${camera}" class="status-control-panel">
-                <div class="status-control-title">
-                    ⚙️ 카메라 상태 변경
-                </div>
-                <div class="status-control-form">
-                    <select id="statusSelect" class="status-select">
-                        <option value="">상태 선택</option>
-                        <option value="ONLINE" th:selected="${camera.status == 'ONLINE'}">🟢 온라인</option>
-                        <option value="OFFLINE" th:selected="${camera.status == 'OFFLINE'}">⚫ 오프라인</option>
-                        <option value="MAINTENANCE" th:selected="${camera.status == 'MAINTENANCE'}">🔧 점검중</option>
-                        <option value="ERROR" th:selected="${camera.status == 'ERROR'}">🔴 오류</option>
-                        <option value="WARNING" th:selected="${camera.status == 'WARNING'}">🟠 경고</option>
-                    </select>
-                    <button id="changeStatusBtn" class="status-change-btn" onclick="changeCameraStatus()">상태 변경</button>
-                </div>
-                <div id="statusResult" class="status-result"></div>
-            </div>
+
             
             <div class="main-content">
                 <div class="video-container">
@@ -445,6 +426,25 @@
                 </div>
                 
                 <div class="events-panel">
+                    <!-- 카메라 상태 변경 패널 -->
+                    <div th:if="${camera}" class="status-control-panel">
+                        <div class="status-control-title">
+                            ⚙️ 카메라 상태 변경
+                        </div>
+                        <div class="status-control-form">
+                            <select id="statusSelect" class="status-select">
+                                <option value="">상태 선택</option>
+                                <option value="ONLINE" th:selected="${camera.status == 'ONLINE'}">🟢 온라인</option>
+                                <option value="OFFLINE" th:selected="${camera.status == 'OFFLINE'}">⚫ 오프라인</option>
+                                <option value="MAINTENANCE" th:selected="${camera.status == 'MAINTENANCE'}">🔧 점검중</option>
+                                <option value="ERROR" th:selected="${camera.status == 'ERROR'}">🔴 오류</option>
+                                <option value="WARNING" th:selected="${camera.status == 'WARNING'}">🟠 경고</option>
+                            </select>
+                            <button id="changeStatusBtn" class="status-change-btn" onclick="changeCameraStatus()">상태 변경</button>
+                        </div>
+                        <div id="statusResult" class="status-result"></div>
+                    </div>
+                    
                     <h3 class="events-title">
                         실시간 이벤트
                         <span id="event-count">0</span>
@@ -487,10 +487,24 @@
                 }
             }
             
+            let streamReconnectTimer;
+            let streamCheckTimer;
+            let lastStreamUpdate = Date.now();
+            
             // 스트림 이미지 로드 성공 시
             streamImg.onload = function() {
                 console.log('스트림 이미지 로드 성공');
+                lastStreamUpdate = Date.now();
                 checkStreamStatus();
+                
+                // 자동 재연결 타이머 재설정
+                if (streamReconnectTimer) {
+                    clearTimeout(streamReconnectTimer);
+                }
+                streamReconnectTimer = setTimeout(() => {
+                    console.log('30초 타이머 - 스트림 자동 재연결 시도');
+                    reconnectStream();
+                }, 30000); // 30초마다 자동 재연결
             };
             
             // 스트림 이미지 로드 실패 시
@@ -499,6 +513,12 @@
                 streamImg.style.display = 'none';
                 streamStatus.style.display = 'flex';
                 statusMessage.textContent = '스트림 연결 실패';
+                
+                // 5초 후 자동 재시도
+                setTimeout(() => {
+                    console.log('스트림 오류 - 5초 후 자동 재시도');
+                    reconnectStream();
+                }, 5000);
             };
             
             // 재시도 버튼 클릭 시
@@ -509,20 +529,30 @@
             
             // 스트림 재연결 함수 (캐시 버스팅 포함)
             function reconnectStream() {
+                // 기존 타이머 정리
+                if (streamReconnectTimer) {
+                    clearTimeout(streamReconnectTimer);
+                }
+                
                 const timestamp = new Date().getTime();
+                const randomId = Math.random().toString(36).substr(2, 9);
                 const baseUrl = `http://localhost:5001/stream/${cameraId}`;
-                const newUrl = `${baseUrl}?t=${timestamp}`;
+                const newUrl = `${baseUrl}?t=${timestamp}&r=${randomId}`;
                 
                 console.log('스트림 재연결 시도:', newUrl);
                 
+                // 이전 이미지 완전히 제거
                 streamImg.src = '';
+                streamImg.removeAttribute('src');
                 streamImg.style.display = 'none';
                 streamStatus.style.display = 'flex';
                 statusMessage.textContent = '재연결 시도 중...';
                 
+                // 짧은 지연 후 새 URL 설정
                 setTimeout(() => {
                     streamImg.src = newUrl;
-                }, 500);
+                    lastStreamUpdate = Date.now();
+                }, 1000);
             }
             
             // 페이지 로드 시 스트림 URL에 캐시 버스팅 적용
@@ -540,6 +570,18 @@
             
             // 초기 스트림 상태 체크
             setTimeout(checkStreamStatus, 2000);
+            
+            // 주기적 스트림 상태 모니터링 (10초마다)
+            streamCheckTimer = setInterval(() => {
+                const timeSinceLastUpdate = Date.now() - lastStreamUpdate;
+                console.log(`스트림 상태 체크: 마지막 업데이트로부터 ${Math.floor(timeSinceLastUpdate/1000)}초 경과`);
+                
+                // 45초 이상 업데이트가 없으면 재연결
+                if (timeSinceLastUpdate > 45000) {
+                    console.log('스트림 타임아웃 감지 - 자동 재연결');
+                    reconnectStream();
+                }
+            }, 10000); // 10초마다 체크
             
             // SSE 연결
             const eventSource = new EventSource('/api/events/stream');
@@ -580,8 +622,17 @@
                     noEvents.remove();
                 }
                 
+                // 중복 이벤트 체크 (ID 기반)
+                if (event.id && document.querySelector(`[data-event-id="${event.id}"]`)) {
+                    console.log('중복 이벤트 스킵:', event.id);
+                    return;
+                }
+                
                 const eventItem = document.createElement('div');
                 eventItem.className = 'event-item';
+                if (event.id) {
+                    eventItem.setAttribute('data-event-id', event.id);
+                }
                 
                 const severity = event.severity || 1;
                 const severityText = ['', '낮음', '보통', '높음', '매우 높음', '치명적'][severity] || '알 수 없음';
@@ -668,15 +719,27 @@
                 })
                 .then(events => {
                     console.log('로드된 이벤트:', events);
-                    // 이벤트를 시간 순으로 정렬 (최신 순)
-                    events.sort((a, b) => new Date(b.ts) - new Date(a.ts));
                     
-                    // 기존 이벤트들을 역순으로 추가 (최신 것이 위에 오도록)
-                    events.reverse().forEach(event => {
-                        addEventToList(event);
-                        eventCounter++;
-                    });
-                    eventCount.textContent = eventCounter;
+                    if (events && events.length > 0) {
+                        // 이벤트를 시간 순으로 정렬 (최신 순)
+                        events.sort((a, b) => new Date(b.ts) - new Date(a.ts));
+                        
+                        // 이벤트 목록 초기화
+                        eventsList.innerHTML = '';
+                        eventCounter = 0;
+                        
+                        // 기존 이벤트들을 순서대로 추가
+                        events.forEach(event => {
+                            addEventToList(event);
+                            eventCounter++;
+                        });
+                        eventCount.textContent = eventCounter;
+                        
+                        console.log(`총 ${events.length}개 이벤트 로드 완료`);
+                    } else {
+                        console.log('로드된 이벤트가 없습니다');
+                        eventsList.innerHTML = '<div class="no-events">이벤트가 없습니다</div>';
+                    }
                 })
                 .catch(error => {
                     console.error('기존 이벤트 로드 실패:', error);
@@ -780,6 +843,19 @@
                     statusBadge.textContent = config.text;
                 }
             }
+            
+            // 페이지 떠날 때 타이머 정리
+            window.addEventListener('beforeunload', function() {
+                if (streamReconnectTimer) {
+                    clearTimeout(streamReconnectTimer);
+                }
+                if (streamCheckTimer) {
+                    clearInterval(streamCheckTimer);
+                }
+                if (eventSource) {
+                    eventSource.close();
+                }
+            });
         }
     </script>
 </body>

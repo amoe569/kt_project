@@ -16,7 +16,7 @@ public class RepositoryComposition__BeanDefinitions {
    */
   public static class RepositoryFragments {
     /**
-     * Get the bean instance supplier for 'jpa.CameraRepository.fragments#0'.
+     * Get the bean instance supplier for 'jpa.VideoRepository.fragments#0'.
      */
     private static BeanInstanceSupplier<RepositoryFragmentsFactoryBean> getFragmentsInstanceSupplier(
         ) {
@@ -37,7 +37,7 @@ public class RepositoryComposition__BeanDefinitions {
     }
 
     /**
-     * Get the bean instance supplier for 'jpa.AlertRepository.fragments#0'.
+     * Get the bean instance supplier for 'jpa.UserRepository.fragments#0'.
      */
     private static BeanInstanceSupplier<RepositoryFragmentsFactoryBean> getFragmentsInstanceSupplier1(
         ) {
@@ -79,7 +79,7 @@ public class RepositoryComposition__BeanDefinitions {
     }
 
     /**
-     * Get the bean instance supplier for 'jpa.VideoRepository.fragments#0'.
+     * Get the bean instance supplier for 'jpa.CameraRepository.fragments#0'.
      */
     private static BeanInstanceSupplier<RepositoryFragmentsFactoryBean> getFragmentsInstanceSupplier3(
         ) {
@@ -100,7 +100,7 @@ public class RepositoryComposition__BeanDefinitions {
     }
 
     /**
-     * Get the bean instance supplier for 'jpa.UserRepository.fragments#0'.
+     * Get the bean instance supplier for 'jpa.AlertRepository.fragments#0'.
      */
     private static BeanInstanceSupplier<RepositoryFragmentsFactoryBean> getFragmentsInstanceSupplier4(
         ) {

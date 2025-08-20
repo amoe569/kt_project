@@ -153,7 +153,7 @@ public class EventService {
     }
     
     public List<Event> getEventsByCamera(String cameraId) {
-        return eventRepository.findByCameraId(cameraId);
+        return eventRepository.findByCameraIdOrderByTsDesc(cameraId);
     }
     
     public Page<Event> getEventsWithFilters(String cameraId, String eventType, 

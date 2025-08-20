@@ -180,8 +180,32 @@ def send_event_to_api(camera_id, detection):
     except Exception as e:
         print(f"❌ {camera_id}: 이벤트 전송 오류: {e}")
 
+def check_camera_status_from_api(camera_id):
+    """Spring Boot API에서 카메라 상태 확인"""
+    try:
+        response = requests.get(
+            f"{API_BASE}/api/cameras/{camera_id}",
+            timeout=3
+        )
+        if response.status_code == 200:
+            camera_data = response.json()
+            return camera_data.get("status", "UNKNOWN")
+        else:
+            print(f"⚠️ {camera_id}: 카메라 상태 조회 실패 - HTTP {response.status_code}")
+            return "UNKNOWN"
+    except Exception as e:
+        print(f"⚠️ {camera_id}: 카메라 상태 조회 오류: {e}")
+        return "UNKNOWN"
+
 def send_traffic_event_to_api(camera_id, traffic_event):
-    """Spring Boot API로 '통행량 많음' 이벤트 전송"""
+    """Spring Boot API로 '통행량 많음' 이벤트 전송 (WARNING 상태 체크 포함)"""
+    # 카메라 상태 확인
+    camera_status_from_api = check_camera_status_from_api(camera_id)
+    
+    if camera_status_from_api == "WARNING":
+        print(f"🟠 {camera_id}: WARNING 상태이므로 이벤트 전송을 스킵합니다.")
+        return
+    
     event_data = {
         "cameraId": camera_id,
         "type": "traffic_heavy",

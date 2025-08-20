@@ -15,8 +15,7 @@ import java.util.UUID;
 @Repository
 public interface EventRepository extends JpaRepository<Event, UUID> {
     
-    @Query("SELECT e FROM Event e WHERE e.camera.id = :cameraId ORDER BY e.ts DESC")
-    List<Event> findByCameraId(@Param("cameraId") String cameraId);
+    List<Event> findByCameraIdOrderByTsDesc(String cameraId);
     
     @Query("SELECT e FROM Event e WHERE e.camera.id = :cameraId ORDER BY e.ts DESC")
     Page<Event> findByCameraIdOrdered(@Param("cameraId") String cameraId, Pageable pageable);
@@ -32,7 +31,7 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     
     @Query("SELECT e FROM Event e WHERE " +
            "(:cameraId IS NULL OR e.camera.id = :cameraId) AND " +
-           "(:eventType IS NULL OR e.type LIKE %:eventType%) AND " +
+           "(:eventType IS NULL OR e.type LIKE CONCAT('%', :eventType, '%')) AND " +
            "(:startDate IS NULL OR e.ts >= :startDate) AND " +
            "(:endDate IS NULL OR e.ts <= :endDate) AND " +
            "e.severity >= :minSeverity " +
