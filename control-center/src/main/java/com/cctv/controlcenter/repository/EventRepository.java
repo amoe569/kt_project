@@ -15,7 +15,8 @@ import java.util.UUID;
 @Repository
 public interface EventRepository extends JpaRepository<Event, UUID> {
     
-    List<Event> findByCameraId(String cameraId);
+    @Query("SELECT e FROM Event e WHERE e.camera.id = :cameraId ORDER BY e.ts DESC")
+    List<Event> findByCameraId(@Param("cameraId") String cameraId);
     
     @Query("SELECT e FROM Event e WHERE e.camera.id = :cameraId ORDER BY e.ts DESC")
     Page<Event> findByCameraIdOrdered(@Param("cameraId") String cameraId, Pageable pageable);
@@ -28,4 +29,19 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
     
     @Query("SELECT e FROM Event e WHERE e.camera.id IN :cameraIds ORDER BY e.ts DESC")
     Page<Event> findByCameraIdsOrdered(@Param("cameraIds") List<String> cameraIds, Pageable pageable);
+    
+    @Query("SELECT e FROM Event e WHERE " +
+           "(:cameraId IS NULL OR e.camera.id = :cameraId) AND " +
+           "(:eventType IS NULL OR e.type LIKE %:eventType%) AND " +
+           "(:startDate IS NULL OR e.ts >= :startDate) AND " +
+           "(:endDate IS NULL OR e.ts <= :endDate) AND " +
+           "e.severity >= :minSeverity " +
+           "ORDER BY e.ts DESC")
+    Page<Event> findEventsWithFilters(
+            @Param("cameraId") String cameraId,
+            @Param("eventType") String eventType,
+            @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate,
+            @Param("minSeverity") int minSeverity,
+            Pageable pageable);
 }

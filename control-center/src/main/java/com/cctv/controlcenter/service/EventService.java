@@ -10,6 +10,8 @@ import com.cctv.controlcenter.repository.EventRepository;
 import com.cctv.controlcenter.repository.VideoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -152,6 +154,15 @@ public class EventService {
     
     public List<Event> getEventsByCamera(String cameraId) {
         return eventRepository.findByCameraId(cameraId);
+    }
+    
+    public Page<Event> getEventsWithFilters(String cameraId, String eventType, 
+            LocalDateTime startDate, LocalDateTime endDate, int minSeverity, Pageable pageable) {
+        
+        log.info("이벤트 필터링 조회 - 카메라: {}, 타입: {}, 시작: {}, 종료: {}, 최소심각도: {}", 
+                cameraId, eventType, startDate, endDate, minSeverity);
+        
+        return eventRepository.findEventsWithFilters(cameraId, eventType, startDate, endDate, minSeverity, pageable);
     }
     
     public SseEmitter subscribeToEvents() {

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 관리 - CCTV AI 관제 시스템</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .user-info {
+            float: right;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .main-container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: #2d2d2d;
+            padding: 1rem;
+            border-right: 1px solid #444;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: #444;
+        }
+        
+        .sidebar-menu a.active {
+            background-color: #667eea;
+        }
+        
+        .content-area {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .page-header {
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        .search-panel {
+            background-color: #2d2d2d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            padding: 0.75rem;
+            background-color: #3d3d3d;
+            border: 1px solid #555;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5a6fd8;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .search-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+        
+        .events-panel {
+            background-color: #2d2d2d;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .events-title {
+            font-size: 1.4rem;
+            color: #667eea;
+        }
+        
+        .events-count {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .events-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        .events-table th,
+        .events-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        
+        .events-table th {
+            background-color: #3d3d3d;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .events-table td {
+            font-size: 0.9rem;
+        }
+        
+        .event-type {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .event-severity {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .severity-1 { background-color: #28a745; }
+        .severity-2 { background-color: #17a2b8; }
+        .severity-3 { background-color: #ffc107; color: #000; }
+        .severity-4 { background-color: #fd7e14; }
+        .severity-5 { background-color: #dc3545; }
+        
+        .event-score {
+            color: #ffc107;
+            font-weight: 600;
+        }
+        
+        .event-camera {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .event-time {
+            color: #888;
+            font-size: 0.8rem;
+        }
+        
+        .event-meta {
+            font-size: 0.8rem;
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pagination a,
+        .pagination span {
+            padding: 0.5rem 1rem;
+            border: 1px solid #555;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: background-color 0.3s;
+        }
+        
+        .pagination a:hover {
+            background-color: #444;
+        }
+        
+        .pagination .current {
+            background-color: #667eea;
+            border-color: #667eea;
+        }
+        
+        .pagination .disabled {
+            color: #666;
+            cursor: not-allowed;
+        }
+        
+        .no-events {
+            text-align: center;
+            color: #888;
+            padding: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .error-message {
+            background-color: #dc3545;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="app-title">CCTV AI 관제 시스템</div>
+        <div class="user-info" th:text="${userEmail}">admin@example.com</div>
+    </header>
+    
+    <div class="main-container">
+        <nav class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="/">대시보드</a></li>
+                <li><a href="/cameras">실시간 모니터링</a></li>
+                <li><a href="/events" class="active">이벤트 관리</a></li>
+                <li><a href="/videos">저장 영상</a></li>
+                <li><a href="/settings">설정</a></li>
+            </ul>
+        </nav>
+        
+        <main class="content-area">
+            <div class="page-header">
+                <h1 class="page-title">이벤트 관리</h1>
+                <p class="page-subtitle">모든 카메라의 이벤트를 검색하고 관리할 수 있습니다</p>
+            </div>
+            
+            <!-- 에러 메시지 -->
+            <div th:if="${error}" class="error-message" th:text="${error}">
+                오류가 발생했습니다
+            </div>
+            
+            <!-- 검색 패널 -->
+            <div class="search-panel">
+                <form class="search-form" method="get" action="/events">
+                    <div class="form-group">
+                        <label class="form-label">카메라</label>
+                        <select name="cameraId" class="form-control">
+                            <option value="">전체 카메라</option>
+                            <option th:each="camera : ${cameras}" 
+                                    th:value="${camera.id}" 
+                                    th:text="${camera.name}"
+                                    th:selected="${camera.id == searchCameraId}">
+                                카메라 이름
+                            </option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">이벤트 타입</label>
+                        <select name="eventType" class="form-control">
+                            <option value="">전체 타입</option>
+                            <option value="traffic_heavy" th:selected="${searchEventType == 'traffic_heavy'}">통행량 많음</option>
+                            <option value="person" th:selected="${searchEventType == 'person'}">사람 감지</option>
+                            <option value="car" th:selected="${searchEventType == 'car'}">차량 감지</option>
+                            <option value="truck" th:selected="${searchEventType == 'truck'}">트럭 감지</option>
+                            <option value="bus" th:selected="${searchEventType == 'bus'}">버스 감지</option>
+                            <option value="motorcycle" th:selected="${searchEventType == 'motorcycle'}">오토바이 감지</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">시작 날짜</label>
+                        <input type="date" name="startDate" class="form-control" th:value="${searchStartDate}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">종료 날짜</label>
+                        <input type="date" name="endDate" class="form-control" th:value="${searchEndDate}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">최소 심각도</label>
+                        <select name="severity" class="form-control">
+                            <option value="1" th:selected="${searchSeverity == 1}">1 (낮음) 이상</option>
+                            <option value="2" th:selected="${searchSeverity == 2}">2 (보통) 이상</option>
+                            <option value="3" th:selected="${searchSeverity == 3}">3 (높음) 이상</option>
+                            <option value="4" th:selected="${searchSeverity == 4}">4 (매우 높음) 이상</option>
+                            <option value="5" th:selected="${searchSeverity == 5}">5 (치명적)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-actions">
+                        <button type="submit" class="btn btn-primary">🔍 검색</button>
+                        <button type="button" class="btn btn-secondary" onclick="clearSearch()">🔄 초기화</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 이벤트 목록 -->
+            <div class="events-panel">
+                <div class="events-header">
+                    <h2 class="events-title">이벤트 목록</h2>
+                    <div class="events-count" th:text="'총 ' + ${totalElements} + '개 이벤트'">총 0개 이벤트</div>
+                </div>
+                
+                <div th:if="${events != null and events.hasContent()}">
+                    <table class="events-table">
+                        <thead>
+                            <tr>
+                                <th>시간</th>
+                                <th>카메라</th>
+                                <th>이벤트 타입</th>
+                                <th>심각도</th>
+                                <th>점수</th>
+                                <th>상세 정보</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="event : ${events.content}">
+                                <td>
+                                    <div class="event-time" th:text="${#temporals.format(event.ts, 'MM-dd HH:mm:ss')}">01-01 12:00:00</div>
+                                </td>
+                                <td>
+                                    <div class="event-camera" th:text="${event.camera.name}">카메라명</div>
+                                </td>
+                                <td>
+                                    <div class="event-type">
+                                        <span th:switch="${event.type}">
+                                            <span th:case="'traffic_heavy'">🚗 통행량 많음</span>
+                                            <span th:case="'person'">👤 사람 감지</span>
+                                            <span th:case="'car'">🚙 차량 감지</span>
+                                            <span th:case="'truck'">🚛 트럭 감지</span>
+                                            <span th:case="'bus'">🚌 버스 감지</span>
+                                            <span th:case="'motorcycle'">🏍️ 오토바이 감지</span>
+                                            <span th:case="*" th:text="'📊 ' + ${event.type}">기타</span>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="event-severity" 
+                                          th:classappend="'severity-' + ${event.severity}"
+                                          th:text="${event.severity}">1</span>
+                                </td>
+                                <td>
+                                    <span class="event-score" th:text="${#numbers.formatDecimal(event.score * 100, 1, 1)} + '%'">100%</span>
+                                </td>
+                                <td>
+                                    <div th:if="${event.metaJson}" class="event-meta">
+                                        <span th:utext="${#strings.replace(#strings.replace(event.metaJson, '{&quot;vehicleCount&quot;:', '차량 '), '&quot;message&quot;:&quot;', ', ')}"
+                                              th:text="${event.metaJson}">메타 정보</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- 페이지네이션 -->
+                    <div class="pagination" th:if="${totalPages > 1}">
+                        <a th:if="${currentPage > 0}" 
+                           th:href="@{/events(page=${currentPage - 1}, size=20, cameraId=${searchCameraId}, eventType=${searchEventType}, startDate=${searchStartDate}, endDate=${searchEndDate}, severity=${searchSeverity})}">
+                           ‹ 이전
+                        </a>
+                        <span th:if="${currentPage == 0}" class="disabled">‹ 이전</span>
+                        
+                        <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:if="${i >= currentPage - 2 and i <= currentPage + 2}">
+                            <a th:if="${i != currentPage}" 
+                               th:href="@{/events(page=${i}, size=20, cameraId=${searchCameraId}, eventType=${searchEventType}, startDate=${searchStartDate}, endDate=${searchEndDate}, severity=${searchSeverity})}"
+                               th:text="${i + 1}">1</a>
+                            <span th:if="${i == currentPage}" class="current" th:text="${i + 1}">1</span>
+                        </span>
+                        
+                        <a th:if="${currentPage < totalPages - 1}" 
+                           th:href="@{/events(page=${currentPage + 1}, size=20, cameraId=${searchCameraId}, eventType=${searchEventType}, startDate=${searchStartDate}, endDate=${searchEndDate}, severity=${searchSeverity})}">
+                           다음 ›
+                        </a>
+                        <span th:if="${currentPage == totalPages - 1}" class="disabled">다음 ›</span>
+                    </div>
+                </div>
+                
+                <div th:if="${events == null or !events.hasContent()}" class="no-events">
+                    📋 조건에 맞는 이벤트가 없습니다
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function clearSearch() {
+            window.location.href = '/events';
+        }
+        
+        // 페이지 로드 시 현재 날짜를 기본값으로 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            const startDateInput = document.querySelector('input[name="startDate"]');
+            const endDateInput = document.querySelector('input[name="endDate"]');
+            
+            if (!startDateInput.value) {
+                const today = new Date();
+                const oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+                startDateInput.value = oneWeekAgo.toISOString().split('T')[0];
+            }
+            
+            if (!endDateInput.value) {
+                const today = new Date();
+                endDateInput.value = today.toISOString().split('T')[0];
+            }
+        });
+    </script>
+</body>
+</html>
