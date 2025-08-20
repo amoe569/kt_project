@@ -615,7 +615,7 @@
                 eventSource.close();
             };
             
-            function addEventToList(event) {
+            function addEventToList(event, isInitialLoad = false) {
                 // 기존 "이벤트가 없습니다" 메시지 제거
                 const noEvents = eventsList.querySelector('.no-events');
                 if (noEvents) {
@@ -698,8 +698,15 @@
                     </div>
                 `;
                 
-                // 최신 이벤트를 맨 위에 추가
-                eventsList.insertBefore(eventItem, eventsList.firstChild);
+                // 초기 로드 시에는 끝에 추가 (이미 정렬됨), 실시간 이벤트는 맨 위에 추가
+                if (isInitialLoad) {
+                    console.log('초기 로드 이벤트 추가:', event.type, event.ts);
+                    eventsList.appendChild(eventItem);
+                } else {
+                    console.log('실시간 이벤트 추가:', event.type, event.ts);
+                    // 새로운 실시간 이벤트는 맨 위에 추가
+                    eventsList.insertBefore(eventItem, eventsList.firstChild);
+                }
                 
                 // 이벤트 목록이 너무 길어지면 오래된 것 제거
                 const maxEvents = 50;
@@ -728,9 +735,9 @@
                         eventsList.innerHTML = '';
                         eventCounter = 0;
                         
-                        // 기존 이벤트들을 순서대로 추가
+                        // 기존 이벤트들을 순서대로 추가 (초기 로드)
                         events.forEach(event => {
-                            addEventToList(event);
+                            addEventToList(event, true); // isInitialLoad = true
                             eventCounter++;
                         });
                         eventCount.textContent = eventCounter;
@@ -751,7 +758,7 @@
                         ts: new Date().toISOString(),
                         message: '이벤트 로드 중 오류가 발생했습니다.'
                     };
-                    addEventToList(dummyEvent);
+                    addEventToList(dummyEvent, true);
                 });
         }
         
